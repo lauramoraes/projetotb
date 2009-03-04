@@ -477,12 +477,10 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 	mes_atual = today.getMonth() + 1;
 	ano_atual = today.getFullYear();
 
-	if((dia == "") ||  (mes == "") || (ano == ""))
+	if((dia == "") && (mes == "") && (ano == ""))
 		return (true);
 	
-        if(campoMes.disabled != true)
-        {
-        switch(mes)
+	switch(mes)
 	{
 		case 1://janeiro
 			if(dia<1 || dia>31)
@@ -624,18 +622,14 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 		setTimeout("globalvar.focus()",250);
 		return false;
 	}
-        }
-        
+	
 	if(((dia > dia_atual) && (mes == mes_atual) && (ano == ano_atual)) || ((mes > mes_atual) && (ano == ano_atual)) || (ano > ano_atual))
 	{ 	
 			alert("Data inválida, a data preenchida não pode ser posterior a data de hoje.");
-                        campoDia.value = "";
+			campoDia.value = "";
 			campoMes.value = "";
 			campoAno.value = "";
-			if(campoDia.value == undefined)
-                            globalvar = campoMes;
-                        else
-                            globalvar = campoDia;
+			globalvar = campoDia;
 			setTimeout("globalvar.focus()",250);
 			return false;
 	}
@@ -676,10 +670,7 @@ function validarData(dia,mes,ano)
 					dia.value="";
 					mes.value="";
 					ano.value="";
-			                if(dia.value == undefined)
-                                            globalvar = mes;
-                                        else
-                                            globalvar = dia;
+					globalvar = dia;
 					setTimeout("globalvar.focus()",250);
 					
 					return false;
@@ -859,9 +850,18 @@ function validarMinuto(campo)
 
 function validarTempo(campo)
 {
+	today = new Date();
+	anoAtual = today.getFullYear();
 	globalvar = campo;
+
 	if(campo.value != "")
 	{
+		if(parseInt(campo.value) > anoAtual)
+		{
+			alert("Data inválida, a data preenchida não pode ser posterior a data de hoje.");
+			campo.value = "";
+			setTimeout("globalvar.focus()",250);
+		}
 		if(parseInt(document.check.idade.value) < parseInt(campo.value))
 		{
 			alert("Valor inválido, este valor deve ser menor do que a idade do paciente.");
