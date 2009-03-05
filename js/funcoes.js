@@ -850,6 +850,20 @@ function validarMinuto(campo)
 
 function validarTempo(campo)
 {
+	globalvar = campo;
+	if(campo.value != "")
+	{
+		if(parseInt(document.check.idade.value) < parseInt(campo.value))
+		{
+			alert("Valor inválido, este valor deve ser menor do que a idade do paciente.");
+			campo.value = "";
+			setTimeout("globalvar.focus()",250);
+		}
+	}
+}
+
+function validarTempoAno(campo)
+{
 	today = new Date();
 	anoAtual = today.getFullYear();
 	globalvar = campo;
@@ -862,7 +876,7 @@ function validarTempo(campo)
 			campo.value = "";
 			setTimeout("globalvar.focus()",250);
 		}
-		if(parseInt(document.check.idade.value) < parseInt(campo.value))
+		if(parseInt(document.check.ano_nascimento.value) > parseInt(campo.value))
 		{
 			alert("Valor inválido, este valor deve ser menor do que a idade do paciente.");
 			campo.value = "";
@@ -1118,3 +1132,49 @@ function habilitarRadio (name, num)
 **	name -> nome do campo
 **	num -> numero de opcoes do campo
 */
+
+var xmlhttp;
+
+function loadCheckGeneralNumber (numeroGeral)
+{
+	xmlhttp=null;
+	if (window.XMLHttpRequest)
+	{// code for Firefox, Opera, IE7, etc.
+		xmlhttp=new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject)
+	{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (xmlhttp!=null)
+	{
+		url = "checkGneralNumber?pid=" + numeroGeral;
+		xmlhttp.onreadystatechange=validarNumeroGeral;
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send(null);
+	}
+	else
+	{
+		alert("O seu navegador não suporta XMLHTTP.");
+	}
+}
+
+function validarNumeroGeral()
+{
+	var temp;
+	if (xmlhttp.readyState==4)
+	{// 4 = "loaded"
+		if (xmlhttp.status==200)
+		{// 200 = "OK"
+			temp=xmlhttp.responseText;
+			if(temp == falso)
+			{
+				alert("Este número geral já existe.");
+			}
+		}
+		else
+		{
+			alert("Problema recebendo resultado:" + xmlhttp.statusText);
+		}
+	}
+}

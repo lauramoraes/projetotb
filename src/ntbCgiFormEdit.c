@@ -101,7 +101,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form.css\">\n");
 			printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/funcoes.js\"></script>\n");
 			printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/const_digitador.js\"></script>\n");
-			printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/validar.js\"></script>\n");
+			printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/validar_.js\"></script>\n");
 			printf ("	<script>\n");
 			printf ("\n");
 			printf ("	function inicializaOcultos(tabela)\n");
@@ -311,7 +311,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("	<!--onSubmit=\"return enviar()\"-->\n");
 			printf ("\n");
 			printf ("	<!--------------------------------------------------------- INICIO DO FORMULARIO ------------------------------------------------------------------->\n");
-			printf ("	<form name=\"check\" id=\"form\" action=\"editPatient.cgi\" method=\"post\" onSubmit=\"emSubmissao = true;\">\n");
+			printf ("	<form name=\"check\" id=\"form\" action=\"editPatient.cgi\" method=\"post\" onSubmit=\"return validar_triagem(this)\">\n");
 			printf ("\n");
 			printf ("		<input type=\"hidden\" name=\"form\" value=\"triagem\" />\n");
 			printf ("		<div align=\"center\">\n");
@@ -723,7 +723,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("\n");
 			printf ("			<tr class=\"impar\">\n");
 			printf ("				<td><script>document.write(tabFields[49][1]);</script>:</td>\n");
-			printf ("				<td colspan=\"2\"><input name=\"mes_diagnostico\" type=\"text\" size=\"2\" maxlength=\"2\" disabled=\"true\" onKeyUp=\"if(this.value.length == 2)ano_diagnostico.focus();\" onBlur=\"validarMes(this)\"> / <input name=\"ano_diagnostico\" type=\"text\" size=\"4\" maxlength=\"4\" disabled=\"true\" onKeyUp=\"if(this.value.length == 4)TBdesfecho[0].focus();\" onBlur=\"validarAno(this);validarData(0,mes_diagnostico,ano_diagnostico);\" > (mm/aaaa)</td>\n");
+			printf ("				<td colspan=\"2\"><input name=\"mes_diagnostico\" type=\"text\" size=\"2\" maxlength=\"2\" disabled=\"true\" onKeyUp=\"if(this.value.length == 2)ano_diagnostico.focus();\" onBlur=\"validarMes(this)\"> / <input name=\"ano_diagnostico\" type=\"text\" size=\"4\" maxlength=\"4\" disabled=\"true\" onKeyUp=\"if(this.value.length == 4)TBdesfecho[0].focus();\" onBlur=\"validarAno(this);if(mes_diagnostico.disabled == true){validarTempoAno(this);}else{validarData(0,mes_diagnostico,ano_diagnostico);}\" > (mm/aaaa)</td>\n");
 			printf ("				<td><input id=\"ignorarMesDiag\" type=\"checkbox\" onClick=\"if(this.checked){mes_diagnostico.disabled=true; mes_diagnostico.value='';} else{mes_diagnostico.disabled=false; mes_diagnostico.focus(); mes_diagnostico.value='';}\"> Ignorar m&ecirc;s</td>\n");
 			printf ("				<td><input id=\"ignorarAnoDiag\" type=\"checkbox\" onClick=\"if(this.checked){document.getElementById('ignorarMesDiag').checked=true;ano_diagnostico.disabled=true; mes_diagnostico.disabled=true; ano_diagnostico.value = '';} else{ano_diagnostico.disabled=false; ano_diagnostico.focus(); ano_diagnostico.value = '';}\"> Ignorar ano</td>\n");
 			printf ("			</tr>\n");
@@ -1913,7 +1913,7 @@ printf ("			<!-- Data do diagnostico de TB no passado -->\n");
 printf ("\n");
 printf ("			<tr class=\"impar\">\n");
 printf ("				<td><script>document.write(tabFields[49][1]);</script>:</td>\n");
-printf ("				<td colspan=\"2\"><input name=\"mes_diagnostico\" type=\"text\" size=\"2\" maxlength=\"2\" disabled=\"true\" onKeyUp=\"if(this.value.length == 2)ano_diagnostico.focus();\" onBlur=\"validarMes(this)\"> / <input name=\"ano_diagnostico\" type=\"text\" size=\"4\" maxlength=\"4\" disabled=\"true\" onKeyUp=\"if(this.value.length == 4)TBdesfecho[0].focus();\" onBlur=\"validarAno(this);validarData(0,mes_diagnostico,ano_diagnostico);\" > (mm/aaaa)</td>\n");
+printf ("				<td colspan=\"2\"><input name=\"mes_diagnostico\" type=\"text\" size=\"2\" maxlength=\"2\" disabled=\"true\" onKeyUp=\"if(this.value.length == 2)ano_diagnostico.focus();\" onBlur=\"validarMes(this)\"> / <input name=\"ano_diagnostico\" type=\"text\" size=\"4\" maxlength=\"4\" disabled=\"true\" onKeyUp=\"if(this.value.length == 4)TBdesfecho[0].focus();\" onBlur=\"validarAno(this);if(mes_diagnostico.disabled == true){validarTempoAno(this);}else{validarData(0,mes_diagnostico,ano_diagnostico);}\" > (mm/aaaa)</td>\n");
 printf ("				<td><input id=\"ignorarMesDiag\" type=\"checkbox\" onClick=\"if(this.checked){mes_diagnostico.disabled=true; mes_diagnostico.value='';} else{mes_diagnostico.disabled=false; mes_diagnostico.focus(); mes_diagnostico.value='';}\"> Ignorar m&ecirc;s</td>\n");
 printf ("				<td><input id=\"ignorarAnoDiag\" type=\"checkbox\" onClick=\"if(this.checked){document.getElementById('ignorarMesDiag').checked=true;ano_diagnostico.disabled=true; mes_diagnostico.disabled=true; ano_diagnostico.value = '';} else{ano_diagnostico.disabled=false; ano_diagnostico.focus(); ano_diagnostico.value = '';}\"> Ignorar ano</td>\n");
 printf ("			</tr>\n");
