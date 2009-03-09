@@ -144,7 +144,7 @@ if(strcmp(username,"digitador") == 0)
 		printf ("		<!-- ******************************************* -->\n");
 		printf ("\n");
 		printf ("\n");
-		printf ("		<div style=\"font-size:10pt;\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\">\n");
+		printf ("		<div style=\"font-size:10pt;\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" onBlur=\"if(this.value.length != 0)loadCheckGeneralNumber(this);\" />\n");
 		printf ("\n");
 		printf ("		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n");
 		printf ("\n");
@@ -1197,7 +1197,7 @@ printf ("\n");
 printf ("		<!-- ******************************************* -->\n");
 printf ("\n");
 printf ("\n");
-printf ("		<div style=\"font-size:10pt;\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\">\n");
+printf ("		<div style=\"font-size:10pt;\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" onBlur=\"if(this.value.length != 0)loadCheckGeneralNumber(this);\" />\n");
 printf ("\n");
 printf ("		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n");
 printf ("\n");

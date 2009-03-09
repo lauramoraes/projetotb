@@ -1148,7 +1148,7 @@ function loadCheckGeneralNumber (numeroGeral)
 	}
 	if (xmlhttp!=null)
 	{
-		url = "checkGneralNumber?pid=" + numeroGeral;
+		url = "./checkGeneralNumber.py?pid=" + numeroGeral.value ;
 		xmlhttp.onreadystatechange=validarNumeroGeral;
 		xmlhttp.open("GET",url,true);
 		xmlhttp.send(null);
@@ -1167,9 +1167,12 @@ function validarNumeroGeral()
 		if (xmlhttp.status==200)
 		{// 200 = "OK"
 			temp=xmlhttp.responseText;
-			if(temp == falso)
+			if(parseInt(temp) == 1)
 			{
 				alert("Este número geral já existe.");
+				globalvar = document.check.numeroGeral;
+				globalvar.value = "";
+				setTimeout("globalvar.focus()",250);
 			}
 		}
 		else
