@@ -43,7 +43,7 @@ void showMenu (char *option, char *username)
 	printf("	<td>");
 	printf("		<table border=\"0\">");
 	printf("		<tr>");
-	printf("			<td class=\"fr\"><i>%s</i> conectado | <a href=\"logout.cgi\">Sair</a></td>", username);
+	printf("			<td class=\"fr\"><i>%s</i> conectado | <a href=\"#\" onClick=\"forceLogout(); \">Trocar Usu&aacute;rio</a></td>", username);
 	printf("		</tr>");
 	printf("		</table>");
 	printf("	</td>");
