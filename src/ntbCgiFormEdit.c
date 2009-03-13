@@ -68,7 +68,7 @@ int main (void)/*(int argc,char**argv)*/
 	pid = cgi_param("pid");
 	//username = cgi_param("uid");
 	
-		if(!(username= getenv("REMOTE_USER"))) //verifica se string lida 矮ull
+		if(!(username= getenv("REMOTE_USER"))) //verifica se string lida null
 	  {
 		printf("Content-type: text/html\n\n");
 		printf("<html>\n");
@@ -76,7 +76,7 @@ int main (void)/*(int argc,char**argv)*/
 		printf("<title>Resultado</title>\n");
 		printf("</head>\n");
 		printf("<body>\n");
-    printf("Erro ao verificar o usu౩o.");
+    printf("Erro ao verificar o usuário.");
 		printf("</body>\n");
 		printf("</html>\n");
 		exit(0);
@@ -167,7 +167,7 @@ int main (void)/*(int argc,char**argv)*/
 				document = fopen(XML_FILE_PATH, "r");
 				
 				if (document == NULL) {
-					printError("O arquivo de pacientes n⭠pode ser aberto");
+					printError("O arquivo de pacientes não pode ser aberto");
 					exit(0);
 				}
 				
@@ -1361,7 +1361,7 @@ printf ("	*/\n");
 	document = fopen(XML_FILE_PATH, "r");
  	
  	if (document == NULL) {
-        printError("O arquivo de pacientes n⭠pode ser aberto");
+        printError("O arquivo de pacientes não pode ser aberto");
         exit(0);
     }
     
