@@ -650,7 +650,7 @@
 			</tr>
 			<tr>
 				<td class="evaluated">Avaliado pelo(a) médico(a): <xsl:value-of select="avaliador" /></td>
-				<td class="evaluated">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" /><xsl:value-of select="ano_inclusao" /></td>
+				<td class="evaluated">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" />/<xsl:value-of select="ano_inclusao" /></td>
 			</tr>
 </xsl:template>
 

@@ -68,7 +68,7 @@ int main (void)/*(int argc,char**argv)*/
 	pid = cgi_param("pid");
 	//username = cgi_param("uid");
 	
-		if(!(username= getenv("REMOTE_USER"))) //verifica se string lida é null
+		if(!(username= getenv("REMOTE_USER"))) //verifica se string lida çŸ®ull
 	  {
 		printf("Content-type: text/html\n\n");
 		printf("<html>\n");
@@ -76,7 +76,7 @@ int main (void)/*(int argc,char**argv)*/
 		printf("<title>Resultado</title>\n");
 		printf("</head>\n");
 		printf("<body>\n");
-    printf("Erro ao verificar o usuário.");
+    printf("Erro ao verificar o usuà±©o.");
 		printf("</body>\n");
 		printf("</html>\n");
 		exit(0);
@@ -167,7 +167,7 @@ int main (void)/*(int argc,char**argv)*/
 				document = fopen(XML_FILE_PATH, "r");
 				
 				if (document == NULL) {
-					printError("O arquivo de pacientes não pode ser aberto");
+					printError("O arquivo de pacientes nâ­ pode ser aberto");
 					exit(0);
 				}
 				
@@ -428,7 +428,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("			<tr class=\"impar\">\n");
 			printf ("				<td><script>document.write(tabFields[15][1]);</script>:</td>\n");
 			printf ("				<td colspan=\"4\">\n");
-			printf ("					<select name=\"naturalidadeEstado\" >\n");
+			printf ("					<select name=\"naturalidadeEstado\" onBlur=\"if(naturalidade(this, naturalidadeCidade) == false){exibeLinhaOculta('tabelaSintomas', 11); naturalidadeAnosRio.disabled = false;  naturalidadeAnosRio.focus();} else {ocultaLinha('tabelaSintomas', 11);naturalidadeAnosRio.value = ''; naturalidadeAnosRio.disabled = true; }\">\n");
 			printf ("						<option selected value=\"\"></option>\n");
 			printf ("						<option value=\"AC\">AC</option>\n");
 			printf ("						<option value=\"AL\">AL</option>\n");
@@ -508,8 +508,8 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("				<td><script>document.write(tabFields[21][1]);</script>:</td>\n");
 			printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"casado\"> Casado</td>\n");
 			printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"solteiro\"> Solteiro</td>\n");
-			printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"separado\"> Separado\n");
-			printf ("					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name=\"estadoCivil\" type=\"radio\" value=\"viuvo\"> Vi&uacute;vo</td>\n");
+			printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"separado\"> Separado</td>\n");
+printf ("					<td><input name=\"estadoCivil\" type=\"radio\" value=\"viuvo\"> Vi&uacute;vo</td>\n");
 			printf ("				<td></td>\n");
 			printf ("			</tr>\n");
 			printf ("\n");
@@ -830,7 +830,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("			<!--   ESPECIFICAR CONTATO  -->\n");
 			printf ("\n");
 			printf ("			<tr class=\"par\">\n");
-			printf ("				<td class=\"wrap\"><script>document.write(tabFields[60][1]);</script> (pode marcar mais de um):</td>\n");
+			printf ("				<td class=\"wrap\"><script>document.write(tabFields[60][1]);</script>:</td>\n");
 			printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"casa\" disabled=\"true\"> Casa</td>\n");
 			printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"trabalho\" disabled=\"true\"> Trabalho</td>\n");
 			printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"social\" disabled=\"true\"> Social</td>\n");
@@ -1361,7 +1361,7 @@ printf ("	*/\n");
 	document = fopen(XML_FILE_PATH, "r");
  	
  	if (document == NULL) {
-        printError("O arquivo de pacientes não pode ser aberto");
+        printError("O arquivo de pacientes nâ­ pode ser aberto");
         exit(0);
     }
     
@@ -1618,7 +1618,7 @@ printf ("\n");
 printf ("			<tr class=\"impar\">\n");
 printf ("				<td><script>document.write(tabFields[15][1]);</script>:</td>\n");
 printf ("				<td colspan=\"4\">\n");
-printf ("					<select name=\"naturalidadeEstado\" >\n");
+printf ("					<select name=\"naturalidadeEstado\" onBlur=\"if(naturalidade(this, naturalidadeCidade) == false){exibeLinhaOculta('tabelaSintomas', 11); naturalidadeAnosRio.disabled = false;  naturalidadeAnosRio.focus();} else {ocultaLinha('tabelaSintomas', 11);naturalidadeAnosRio.value = ''; naturalidadeAnosRio.disabled = true; }\">\n");
 printf ("						<option selected value=\"\"></option>\n");
 printf ("						<option value=\"AC\">AC</option>\n");
 printf ("						<option value=\"AL\">AL</option>\n");
@@ -1698,8 +1698,8 @@ printf ("			<tr class=\"par\">\n");
 printf ("				<td><script>document.write(tabFields[21][1]);</script>:</td>\n");
 printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"casado\"> Casado</td>\n");
 printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"solteiro\"> Solteiro</td>\n");
-printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"separado\"> Separado\n");
-printf ("					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name=\"estadoCivil\" type=\"radio\" value=\"viuvo\"> Vi&uacute;vo</td>\n");
+printf ("				<td><input name=\"estadoCivil\" type=\"radio\" value=\"separado\"> Separado</td>\n");
+printf ("					<td><input name=\"estadoCivil\" type=\"radio\" value=\"viuvo\"> Vi&uacute;vo</td>\n");
 printf ("				<td></td>\n");
 printf ("			</tr>\n");
 printf ("\n");
@@ -2020,7 +2020,7 @@ printf ("\n");
 printf ("			<!--   ESPECIFICAR CONTATO  -->\n");
 printf ("\n");
 printf ("			<tr class=\"par\">\n");
-printf ("				<td class=\"wrap\"><script>document.write(tabFields[60][1]);</script> (pode marcar mais de um):</td>\n");
+printf ("				<td class=\"wrap\"><script>document.write(tabFields[60][1]);</script>:</td>\n");
 printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"casa\" disabled=\"true\"> Casa</td>\n");
 printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"trabalho\" disabled=\"true\"> Trabalho</td>\n");
 printf ("				<td><input name=\"contatoTBPqual\" type=\"checkbox\" value=\"social\" disabled=\"true\"> Social</td>\n");
