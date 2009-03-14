@@ -39,7 +39,10 @@ int main (int argc, char **argv)
 	username = cgi_param("uid");
 	numeroGeral = cgi_param("pid");	
 
-	cgi_init_headers();
+	// cgi_init_headers();
+	// Funcao criada por Felipe para fazer com que o browser interprete o
+	// HTML como utf-8.
+	cgi_init_headers_with_content_type("text/html; charset=utf-8");
 
 	//HTML
 
