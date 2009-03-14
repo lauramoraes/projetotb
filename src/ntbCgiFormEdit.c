@@ -237,6 +237,8 @@ int main (void)/*(int argc,char**argv)*/
 						printf ("\t\ttabela[%i] = [\"%s\",\"%s\"];\n", indice1, cur_node_children->name, temp);
 						free(temp);
 						}
+						else
+							indice1 --;
 					}
 					else
 						indice1 --;
@@ -256,7 +258,7 @@ int main (void)/*(int argc,char**argv)*/
 				
 				printf ("		var indice1,indice2;\n");
 				printf ("		\n");
-				printf ("		for(indice1 = 0 ;indice1 < %i;indice1 ++)\n",indice1-1);
+				printf ("		for(indice1 = 0 ;indice1 < %i;indice1 ++)\n",indice1);
 				printf ("		{\n");
 				printf ("			for(indice2 = 0;indice2 < %s;indice2 ++)\n","255");
 				printf ("			{\n");
@@ -697,6 +699,9 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("			Pontos:&nbsp;<input name=\"pontuacao\" type=\"text\" size=\"2\" readOnly=\"true\">\n");
 			printf ("			<br /><br /></td>\n");
 			printf ("			</tr>\n");
+			
+			printf ("			<tr><td colspan=5 > </td></tr>\n");
+			/*
 			printf ("\n");
 			printf ("			<tr bgcolor=\"red\" class=\"bold\">\n");
 			printf ("				<td colspan=\"5\" style=\"text-align: center; color:white\">ATEN&Ccedil;&Atilde;O!!! CASO MUDE UMA DAS OP&Ccedil;&Otilde;ES ACIMA OU O VALOR DOS PESOS\n");
@@ -705,6 +710,7 @@ int main (void)/*(int argc,char**argv)*/
 			printf ("				</td>\n");
 			printf ("			</tr>\n");
 			printf ("\n");
+			*/
 			printf ("			<tr>\n");
 			printf ("				<td colspan=\"5\" class=\"label\"><b>Hist&oacute;ria de tuberculose</b></td>\n");
 			printf ("			</tr>\n");
@@ -1428,6 +1434,8 @@ printf ("	*/\n");
 				printf ("\t\ttabela[%i] = [\"%s\",\"%s\"];\n", indice1, cur_node_children->name, temp);
 				free(temp);
 				}
+				else
+					indice1 --;
 			}
 			else
 				indice1 --;
@@ -1447,7 +1455,7 @@ printf ("	*/\n");
 		
 		printf ("		var indice1,indice2;\n");
 		printf ("		\n");
-		printf ("		for(indice1 = 0 ;indice1 < %i;indice1 ++)\n",indice1-2);
+		printf ("		for(indice1 = 0 ;indice1 < %i;indice1 ++)\n",indice1);
 		printf ("		{\n");
 		printf ("			for(indice2 = 0;indice2 < form.elements.length;indice2 ++)\n");
 		printf ("			{\n");
@@ -1887,6 +1895,9 @@ printf ("			<br /><input name=\"result\" type=\"button\" value=\"Resultado\" onC
 printf ("			Pontos:&nbsp;<input name=\"pontuacao\" type=\"text\" size=\"2\" readOnly=\"true\">\n");
 printf ("			<br /><br /></td>\n");
 printf ("			</tr>\n");
+
+printf ("			<tr><td colspan=5 > </td></tr>\n");
+/*
 printf ("\n");
 printf ("			<tr bgcolor=\"red\" class=\"bold\">\n");
 printf ("				<td colspan=\"5\" style=\"text-align: center; color:white\">ATEN&Ccedil;&Atilde;O!!! CASO MUDE UMA DAS OP&Ccedil;&Otilde;ES ACIMA OU O VALOR DOS PESOS\n");
@@ -1895,6 +1906,7 @@ printf ("															DO CONTR&Aacute;RIO, A PONTUA&Ccedil;&Atilde;O ESTAR&Aac
 printf ("				</td>\n");
 printf ("			</tr>\n");
 printf ("\n");
+*/
 printf ("			<tr>\n");
 printf ("				<td colspan=\"5\" class=\"label\"><b>Hist&oacute;ria de tuberculose</b></td>\n");
 printf ("			</tr>\n");

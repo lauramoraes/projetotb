@@ -275,7 +275,7 @@ int main (int argc, char **argv)
 	printf ("	<td colspan=\"2\"><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"acne\" disabled=\"true\">Acne\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hiperuricemia\" disabled=\"true\">Hiperuricemia\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"febre\" disabled=\"true\">Febre\n");
-	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hipotensao\" disabled=\"true\">Hipotens&atilde;o ortost&acute;tica\n");
+	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hipotensao\" disabled=\"true\">Hipotens&atilde;o ortost&aacute;tica\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"ginecomastia\" disabled=\"true\">Ginecomastia</td>\n");
 	printf ("	</tr>\n");
 	printf ("	\n");

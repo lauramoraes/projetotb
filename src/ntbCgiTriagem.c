@@ -510,6 +510,10 @@ if(strcmp(username,"digitador") == 0)
 		printf ("			Pontos:&nbsp;<input name=\"pontuacao\" type=\"text\" size=\"2\" readOnly=\"true\">\n");
 		printf ("			<br /><br /></td>\n");
 		printf ("			</tr>\n");
+		
+		printf ("			<tr><td colspan=5 > </td></tr>\n");
+		
+		/*
 		printf ("\n");
 		printf ("			<tr bgcolor=\"red\" class=\"bold\">\n");
 		printf ("				<td colspan=\"5\" style=\"text-align: center; color:white\">ATEN&Ccedil;&Atilde;O!!! CASO MUDE UMA DAS OP&Ccedil;&Otilde;ES ACIMA OU O VALOR DOS PESOS\n");
@@ -518,6 +522,7 @@ if(strcmp(username,"digitador") == 0)
 		printf ("				</td>\n");
 		printf ("			</tr>\n");
 		printf ("\n");
+		*/
 		printf ("			<tr>\n");
 		printf ("				<td colspan=\"5\" class=\"label\"><b>Hist&oacute;ria de tuberculose</b></td>\n");
 		printf ("			</tr>\n");
@@ -1563,6 +1568,9 @@ printf ("			<br /><input name=\"result\" type=\"button\" value=\"Resultado\" onC
 printf ("			Pontos:&nbsp;<input name=\"pontuacao\" type=\"text\" size=\"2\" readOnly=\"true\">\n");
 printf ("			<br /><br /></td>\n");
 printf ("			</tr>\n");
+
+printf ("			<tr><td colspan=5 > </td></tr>\n");
+/*
 printf ("\n");
 printf ("			<tr bgcolor=\"red\" class=\"bold\">\n");
 printf ("				<td colspan=\"5\" style=\"text-align: center; color:white\">ATEN&Ccedil;&Atilde;O!!! CASO MUDE UMA DAS OP&Ccedil;&Otilde;ES ACIMA OU O VALOR DOS PESOS\n");
@@ -1571,6 +1579,7 @@ printf ("															DO CONTR&Aacute;RIO, A PONTUA&Ccedil;&Atilde;O ESTAR&Aac
 printf ("				</td>\n");
 printf ("			</tr>\n");
 printf ("\n");
+*/
 printf ("			<tr>\n");
 printf ("				<td colspan=\"5\" class=\"label\"><b>Hist&oacute;ria de tuberculose</b></td>\n");
 printf ("			</tr>\n");

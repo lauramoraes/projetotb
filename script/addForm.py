@@ -14,6 +14,10 @@ xmlEncoding = 'ISO-8859-1';
 #Getting the HTML form input data.
 form = cgi.FieldStorage()
 
+value = form.getvalue("form")
+if((value == "consultaMedica") or (value == "followUp")):
+    xmlEncoding = 'utf-8'
+
 #Creating the XML document that will hold the new data.
 doc = xml.dom.minidom.Document();
 data = doc.createElement(form['form'].value);

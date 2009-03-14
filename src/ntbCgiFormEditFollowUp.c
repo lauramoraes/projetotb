@@ -293,6 +293,8 @@ document = fopen(XML_FILE_PATH, "r");
 				printf ("\t\ttabela[%i] = [\"%s\",\"%s\"];\n", indice1, cur_node_children->name, temp);
 				free(temp);
 				}
+				else
+					indice1 --;
 			}
 			else
 				indice1 --;
@@ -324,7 +326,7 @@ document = fopen(XML_FILE_PATH, "r");
 		printf ("					if((form.elements[indice2].type == \"radio\")||(form.elements[indice2].type == \"checkbox\"))\n");
 		printf ("						if(form.elements[indice2].value == tabela[indice1][1])\n");
 		printf ("							form.elements[indice2].click();\n");
-		printf ("				}\n");
+		printf ("				}\n");		
 		printf ("			}\n");
 		printf ("		}\n");
 		printf ("	}\n");
@@ -447,7 +449,7 @@ document = fopen(XML_FILE_PATH, "r");
 	printf ("	<td colspan=\"2\"><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"acne\" disabled=\"true\">Acne\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hiperuricemia\" disabled=\"true\">Hiperuricemia\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"febre\" disabled=\"true\">Febre\n");
-	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hipotensao\" disabled=\"true\">Hipotens&atilde;o ortost&acute;tica\n");
+	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"hipotensao\" disabled=\"true\">Hipotens&atilde;o ortost&aacute;tica\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMenores\" type=\"checkbox\" value=\"ginecomastia\" disabled=\"true\">Ginecomastia</td>\n");
 	printf ("	</tr>\n");
 	printf ("	\n");

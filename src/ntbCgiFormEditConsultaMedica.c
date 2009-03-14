@@ -301,6 +301,8 @@ int main (void)/*(int argc,char**argv)*/
 				printf ("\t\ttabela[%i] = [\"%s\",\"%s\"];\n", indice1, cur_node_children->name, temp);
 				free(temp);
 				}
+				else
+					indice1 --;
 			}
 			else
 				indice1 --;
