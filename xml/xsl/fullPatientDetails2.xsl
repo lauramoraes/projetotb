@@ -456,11 +456,8 @@
 			</tr>
 			<xsl:if test="inclusao[. = 'sim']">
 				<tr>
-					<td class="title2" rowspan="2">Critérios de inclusão:</td>
-					<td class="answer2"><xsl:value-of select="criteriosInclusao" /></td>
-				</tr>
-				<tr>
-					<td class="answer2"><xsl:value-of select="criteriosInclusao" /> - <xsl:value-of select="concat(dia_termoConsentimento,'/',mes_termoConsentimento,'/',ano_termoConsentimento)" /></td>
+				<td class="title2">Motivo:</td>
+				<td class="answer2"><xsl:value-of select="criteriosInclusao" /> - <xsl:value-of select="concat(dia_termoConsentimento,'/',mes_termoConsentimento,'/',ano_termoConsentimento)" /></td>
 				</tr>
 			
 				<tr>
