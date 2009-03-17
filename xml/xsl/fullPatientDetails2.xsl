@@ -314,6 +314,123 @@
 				<td class="title2">Cage positivo:</td>
 				<td class="answer2"><xsl:value-of select="cage" /></td>
 			</tr>
+			
+<!-- Perguntas finais de enfermagem -->
+			<tr>
+				<td class="title4" colspan="2">Perguntas Finais de Enfermagem</td>
+			</tr>
+			
+			
+			<tr>
+				<td class="title1">Primeira vez que procurou auxílio:</td>
+				<td class="answer1"><xsl:value-of select="primeiraProcuraParaAuxiliodeSaude" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Local:</td>
+				<td class="answer1"><xsl:value-of select="lugarDaPrimeiraConsulta" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Causa:</td>
+				<td class="answer1"><xsl:value-of select="causaDaPrimeiraConsulta" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Acompanhado de familiares?</td>
+				<td class="answer1"><xsl:value-of select="veioAcompanhadoDeFamiliares" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Encaminhado pelo P. de Saúde Família?</td>
+				<td class="answer1"><xsl:value-of select="veioEncaminhadoPorAlgumPostodeSaude" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorAlgumPostodeSaude[. = 'sim']">
+				<tr>
+					<td class="title1">De qual posto?</td>
+					<td class="answer1"><xsl:value-of select="deQualPostoDeSaudeFoiEncaminhado" /></td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td class="title1">Encaminhado pelo SUS?</td>
+				<td class="answer1"><xsl:value-of select="veioEncaminhadoPorUnidadedDeSaudeSUS" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorUnidadedDeSaudeSUS[. = 'sim']">
+				<tr>
+					<td class="title1">De qual posto?</td>
+					<td class="answer1"><xsl:value-of select="deQualPostoDeSaudeDoSUSFoiEncaminhado" /></td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td class="title1">Encaminhado por unidade particular?</td>
+				<td class="answer1"><xsl:value-of select="veioEncaminhadoPorUnidadedDeSaudeParticular" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorUnidadedDeSaudeParticular[. = 'sim']">
+				<tr>
+					<td class="title1">De qual posto?</td>
+					<td class="answer1"><xsl:value-of select="deQualPostoDeSaudeparticularFoiEncaminhado" /></td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td class="title1">Decidiu sozinho?</td>
+				<td class="answer1"><xsl:value-of select="decidiuSozinhoPorAuxilioMedico" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorUnidadedDeSaudeParticular[. = 'sim']">
+				<tr>
+					<td class="title1">Porque?</td>
+					<td class="answer1"><xsl:value-of select="porqueDecidiuSozinhoPorAuxilioMedico" /></td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td class="title2">Foi encaminhado para qual setor?</td>
+				<td class="answer2"><xsl:value-of select="encaminhadoParaQualSetorDaPoliclinica" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Fez algum tratamento para tosse recente?</td>
+				<td class="answer1"><xsl:value-of select="algumTratamentoParaTosseRecente" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorUnidadedDeSaudeParticular[. = 'sim']">
+				<tr>
+					<td class="title1">Qual?</td>
+					<td class="answer1"><xsl:value-of select="qualFoiTratamentoRecenteFeito" /></td>
+				</tr>
+				<tr>
+					<td class="title1">Quanto durou?</td>
+					<td class="answer1"><xsl:value-of select="quantoDiasDurouTratamentoRecenteFeito" /></td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td class="title2">Trouxe Raio-X de torax?</td>
+				<td class="answer2"><xsl:value-of select="trouxeRXdeTorax" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Trouxe resultado de Raio-X de torax?</td>
+				<td class="answer1"><xsl:value-of select="trouxeAlgumResultadoDeRXdeTorax" /></td>
+			</tr>
+			<tr>
+				<td class="title2">Trouxe material de escarro?</td>
+				<td class="answer2"><xsl:value-of select="trouxeMaterialDeExacarro" /></td>
+			</tr>			
+			<tr>
+				<td class="title2">Trouxe resultado de material de escarro?</td>
+				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeMaterialDeExacarro" /></td>
+			</tr>
+			<tr>
+				<td class="title2">Trouxe resultado de material de escarro?</td>
+				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeMaterialDeExacarro" /></td>
+			</tr>
+			<tr>
+				<td class="title2">Trouxe resultado de biópsia?</td>
+				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeBiopasia" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Trouxe algum outro resultado?</td>
+				<td class="answer1"><xsl:value-of select="trouxeAlgumOutroResultado" /></td>
+			</tr>
+			<xsl:if test="veioEncaminhadoPorUnidadedDeSaudeParticular[. = 'sim']">
+				<tr>
+					<td class="title1">Qual?</td>
+					<td class="answer1"><xsl:value-of select="qualOutroResultado" /></td>
+				</tr>
+			</xsl:if>
+
+<!-- Fim Perguntas finais de enfermagem -->			
 			<tr>
 				<td class="title1">Desfecho da consulta inicial:</td>
 				<td class="answer1"><xsl:value-of select="desfechoConsultaInicial" /></td>
