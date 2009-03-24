@@ -1,0 +1,37 @@
+# Use esse arquivo como ponto de partida para criar um servidor virtual
+# para hospedar o site de guadalupe. Copie esse arquivo para
+# /etc/apache2/sites-available, efetue as alteracoes necessarias e execute o
+# comando:
+# # a2ensite 001-gruyere.vhost
+
+# Configuracao do virtual host sem SSL para redirecionar para o seguro.
+<VirtualHost *:80>
+    ServerName www.gruyere.lps.ufrj.br:80
+    RewriteEngine   on
+    RewriteCond     %{SERVER_PORT} ^80$
+    RewriteRule     ^(.*)$ https://%{SERVER_NAME}$1 [L,R]
+</VirtualHost>
+
+# Configuracao do virtual host com SSL.
+<VirtualHost *:443>
+    # Ajustar o nome do servidor virtual
+    ServerName www.gruyere.lps.ufrj.br:443
+    ServerAdmin ProjetoTB
+
+    # Ajustar caminho para arquivos de certificado
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/www.gruyere.lps.ufrj.br.cert
+    SSLCertificateKeyFile /etc/ssl/private/www.gruyere.lps.ufrj.br.key
+
+    DocumentRoot /usr/lib/projetotb/guadalupe
+    # Caso queira o DocumentRoot em outro lugar, defina um alias como o da linha
+    # abaixo:
+    #Alias /guadalupe /usr/lib/projetotb/guadalupe
+
+    Include /etc/guadalupe/guadalupe.conf
+
+    CustomLog /var/log/apache2/guadalupe.log combined
+
+</VirtualHost>
+
+# vim: set ft=apache tw=80 sw=4 sts=4 et: #

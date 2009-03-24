@@ -1,0 +1,12 @@
+Source: projetotb
+Section: web
+Priority: extra
+Maintainer: Felipe Fink Grael <felipefg@gmail.com>
+Build-Depends: debhelper (>= 7), scons, libxml2-dev
+Standards-Version: 3.8.0
+
+Package: guadalupe
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, xsltproc, apache2, libapache2-mod-python, python
+Description: Sistema de Guadalupe
+ Sistema web a ser instalado no posto de guadalupe
