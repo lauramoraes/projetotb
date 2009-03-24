@@ -412,10 +412,6 @@
 				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeMaterialDeExacarro" /></td>
 			</tr>
 			<tr>
-				<td class="title2">Trouxe resultado de material de escarro?</td>
-				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeMaterialDeExacarro" /></td>
-			</tr>
-			<tr>
 				<td class="title2">Trouxe resultado de biópsia?</td>
 				<td class="answer2"><xsl:value-of select="trouxeAlgumResultadoDeBiopasia" /></td>
 			</tr>
@@ -488,6 +484,10 @@
 					<td class="answer2"><xsl:value-of select="PTprimeiraDose" /></td>
 				</tr>
 			</xsl:if>
+			<tr>
+				<td class="title2">Observações:</td>
+				<td class="answer2"><xsl:value-of select="observacoes" /></td>
+			</tr>
 			<tr>
 				<td class="title1"><xsl:value-of select="concat('Avaliado pelo(a) enfermeiro(a): ', avaliador)" /></td>
 				<td class="answer1">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" />/<xsl:value-of select="ano_inclusao" />
@@ -593,6 +593,10 @@
 				<td class="answer2"><xsl:value-of select="gastoAcompanhante" /></td>
 			</tr>
 			<tr>
+				<td class="title2">Observações:</td>
+				<td class="answer2"><xsl:value-of select="observacoes" /></td>
+			</tr>
+			<tr>
 				<td class="evaluated">Avaliado pelo(a) enfermeiro(a): <xsl:value-of select="avaliador" /></td>
 				<td class="evaluated">Data da avaliação: <xsl:value-of select="diaCadastro" />/<xsl:value-of select="mesCadastro" />/<xsl:value-of select="anoCadastro" /></td>
 			</tr>
@@ -615,7 +619,6 @@
 				<td class="title1">Qual esquema?</td>
 				<td class="answer1"><xsl:value-of select="qualEsquema" /></td>
 			</tr>
-			
 			<tr>
 				<td class="title4" colspan="2">Quimioprofilaxia Prévia para TB</td>
 			</tr>
@@ -658,8 +661,8 @@
 			<tr>
 				<td class="title1">Comorbidades:</td>
 				<td class="answer1">
-				<xsl:for-each select="comorbidades"><xsl:value-of select="." />. </xsl:for-each></td>
-				<xsl:value-of select="outrascomorbidades" />
+				<xsl:for-each select="comorbidades"><xsl:value-of select="." />. </xsl:for-each>
+				<xsl:value-of select="outrascomorbidades" /></td>
 			</tr>
 			
 			
@@ -872,7 +875,7 @@
 			</tr>
 			<tr>
 				<td class="title1">Há quanto tempo estava sentindo-se diferente ou doente, antes de vir ao posto?</td>
-				<td class="answer1"><xsl:value-of select="tempoDoente" /></td>
+				<td class="answer1"><xsl:value-of select="tempoDoente" /> semanas.</td>
 			</tr>
 			<tr>
 				<td class="title2">Antes de ser diagnosticado no posto, você foi a alguma outra unidade de saúde?</td>
@@ -902,11 +905,13 @@
 			</tr>
 			<tr>
 				<td class="title2">Data do início:</td>
-				<td class="answer2"><xsl:value-of select="tratamentoPrescritoTBData" /></td>
+				<td class="answer2"><xsl:value-of select="inicio_dia" />/<xsl:value-of select="inicio_mes" />/<xsl:value-of select="inicio_ano" /></td>
 			</tr>
 			<tr>
-				<td class="title2">Fármacos utilizados:</td>
-				<td class="answer2"><xsl:value-of select="tratamentoPrescritoTBFarmacos" /></td>
+				<td class="title1">Fármacos utilizados:</td>
+				<td class="answer1">
+				<xsl:for-each select="tratamentoPrescritoTBFarmacos"><xsl:value-of select="." />. </xsl:for-each>
+				<xsl:value-of select="farmacos7" /></td>
 			</tr>
 			<tr>
 				<td class="title1">Reação adversa dos tuberculostáticos?</td>
@@ -914,11 +919,13 @@
 			</tr>
 			<tr>
 				<td class="title1">Maiores:</td>
-				<td class="answer1"><xsl:value-of select="reacoesAdversasTuberculostaticosMaiores" /></td>
+				<td class="answer1">
+				<xsl:for-each select="reacoesAdversasTuberculostaticosMaiores"><xsl:value-of select="." />. </xsl:for-each></td>
 			</tr>
 			<tr>
 				<td class="title1">Menores:</td>
-				<td class="answer1"><xsl:value-of select="reacoesAdversasTuberculostaticosMenores" /></td>
+				<td class="answer1">
+				<xsl:for-each select="reacoesAdversasTuberculostaticosMenores"><xsl:value-of select="." />. </xsl:for-each></td>
 			</tr>
 			<tr>
 				<td class="title2">Houve óbito?</td>
@@ -933,13 +940,15 @@
 				<td class="answer1"><xsl:value-of select="mudancaEsquemaTratamentoTB" /></td>
 			</tr>
 			<tr>
-				<td class="title1">Data da mudança:</td>
-				<td class="answer1"><xsl:value-of select="mudancaData" /></td>
+				<td class="title2">Data da mudança:</td>
+				<td class="answer2"><xsl:value-of select="mudanca_dia" />/<xsl:value-of select="mudanca_mes" />/<xsl:value-of select="mudanca_ano" /></td>
 			</tr>
 			<tr>
 				<td class="title1">Fármacos utilizados:</td>
-				<td class="answer1"><xsl:value-of select="mudancaFarmacos" /></td>
-			</tr>
+				<td class="answer1">
+				<xsl:for-each select="mudancaFarmacos"><xsl:value-of select="." />. </xsl:for-each>
+				<xsl:value-of select="farmacos14" /></td>
+			</tr> 
 			<tr>
 				<td class="title1">Motivo:</td>
 				<td class="answer1"><xsl:value-of select="mudancaMotivo" /></td>
@@ -981,8 +990,8 @@
 				<td class="answer2"><xsl:value-of select="casoBaixaProbabilidade90dias" /></td>
 			</tr>
 			<tr>
-				<td class="title1">Data do RX:</td>
-				<td class="answer1"><xsl:value-of select="dataRX90dias" /></td>
+				<td class="title2">Data do RX:</td>
+				<td class="answer2"><xsl:value-of select="rx_dia" />/<xsl:value-of select="rx_mes" />/<xsl:value-of select="rx_ano" /></td>
 			</tr>
 			<tr>
 				<td class="title2">Follow up do RX de Tórax (compare com o RXT inicial como o atual):</td>
@@ -994,15 +1003,23 @@
 			</tr>
 			<tr>
 				<td class="title2">Data do Anti-HIV:</td>
-				<td class="answer2"><xsl:value-of select="dataAntiHIV90dias" /></td>
+				<td class="answer2"><xsl:value-of select="antihiv_dia" />/<xsl:value-of select="antihiv_mes" />/<xsl:value-of select="antihiv_ano" /></td>
 			</tr>
 			<tr>
 				<td class="title1">Diagnóstico 90 dias:</td>
-				<td class="answer1"><xsl:value-of select="diagnostico90dias" /></td>
+				<td class="answer1"><xsl:value-of select="diagnostico90dias" />.</td>
 			</tr>
 			<tr>
 				<td class="title2">Em caso de outro diagnóstico diferente de TB, qual?</td>
-				<td class="answer2"><xsl:value-of select="diagnosticoFinal" /></td>
+				<td class="answer2"><xsl:value-of select="diagnosticoDiferenteTB" />. <xsl:value-of select="outro_diagnostico_sim" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Diagnóstico Final:</td>
+				<td class="answer1"><xsl:value-of select="diagnosticoFinal" /></td>
+			</tr>
+			<tr>
+				<td class="title2">Observações:</td>
+				<td class="answer2"><xsl:value-of select="observacoes" /></td>
 			</tr>
 			<tr>
 				<td class="evaluated">Avaliado pelo(a) médico(a): <xsl:value-of select="avaliadorMedicoFollowUp" /></td>
