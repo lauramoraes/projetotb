@@ -190,7 +190,7 @@ int main (int argc, char **argv)
 	printf ("	<div align=\"center\">\n");
 	printf ("		<br /><br />\n");
 	printf ("	<!-- --><input type=\"hidden\" name=\"form\" value=\"consultaMedica\" />\n");
-	printf ("	<!-- --><div class=\"h4\"><b><script>document.write(tabFields[39][1]);</script><input name=\"pid\" size=\"6\" type=\"text\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n",numeroGeral);
+	printf ("	<!-- --><div class=\"h4\"><b><script>document.write(tabFields[39][1]);</script><input name=\"pid\" size=\"6\" type=\"text\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n",translate_escape_character_xsl(numeroGeral));
 	printf ("		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n");
 	printf ("		<script>document.write(tabFields[40][1]);</script><input maxlength=\"2\" size=\"2\" name=\"dia_inclusao\" onKeyUp=\"if(this.value.length == 2)mes_inclusao.focus();\" onBlur=\"validarDia(this);\">&nbsp;/\n");
 	printf ("											<input maxlength=\"2\" size=\"2\" name=\"mes_inclusao\" onKeyUp=\"if(this.value.length == 2)ano_inclusao.focus();\" onBlur=\"validarMes(this);\">&nbsp;/\n");

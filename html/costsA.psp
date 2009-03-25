@@ -53,7 +53,7 @@ function setValues()
 <%
 for field, value in costs:
 %>
-  setObjValue(getElementsByName("<%=field%>"), "<%= functions.encode(value) %>");
+  setObjValue(getElementsByName("<%=field%>"), "<%= functions.encode(value,"0") %>");
 <%
 #end of loop.
 %>
@@ -163,8 +163,8 @@ if not functions.isMobile(envVars):
     
     <!-- Numero Geral e Nome-->
     <p>      
-      <label title="label_pid" for="id_pid"><b>Número Geral:</b></label><input type="text" name="pid" id="id_pid" size="6" maxlength="100" readonly="true" value="<%= functions.encode(patientId) %>" /><br />
-      <label title="label_patientName" for="id_patientName"><b>Paciente:</b></label><input type="text" name="patientName" id="id_patientName" size = "50" maxlength="100" readonly="true" disabled="true" value="<%= functions.encode(patientName) %>" />
+      <label title="label_pid" for="id_pid"><b>Número Geral:</b></label><input type="text" name="pid" id="id_pid" size="6" maxlength="100" readonly="true" value="<%= functions.encode(patientId,"1") %>" /><br />
+      <label title="label_patientName" for="id_patientName"><b>Paciente:</b></label><input type="text" name="patientName" id="id_patientName" size = "50" maxlength="100" readonly="true" disabled="true" value="<%= functions.encode(patientName,"1") %>" />
     </p>
     <br />
 
@@ -298,7 +298,7 @@ if not functions.isMobile(envVars):
       <!-- Informacoes de cadastramento (avaliador cadastrador, e data) -->
       <p>      
         <label title="label_avaliado_por" for="avaliado_por"><script>document.write(fieldsCostA.avaliador.text)</script></label><input name="avaliador" id="avaliado_por" type="text" size="15"><br />
-        <label title="label_cadastrado_por" for="cadastrado_por"><script>document.write(fieldsCostA.quemCadastrou.text)</script></label><input name="quemCadastrou" id="cadastrado_por" type="text" readonly="readonly" value="<%= functions.encode(userName)%>" size="15"><br />
+        <label title="label_cadastrado_por" for="cadastrado_por"><script>document.write(fieldsCostA.quemCadastrou.text)</script></label><input name="quemCadastrou" id="cadastrado_por" type="text" readonly="readonly" value="<%= functions.encode(userName,"1")%>" size="15"><br />
         <label title="label_data" for="data"><script>document.write(fieldsCostA.diaCadastro.text)</script></label><input name="diaCadastro" type="text" id="data" maxlength="2" size="2" onKeyUp="if(this.value.length == 2) this.blur(); " onBlur="if(validarDia(this))mesCadastro.focus(); if((diaCadastro.value.length != 0) && (mesCadastro.value.length != 0) && (anoCadastro.value.length != 0))validarQualquerData(diaCadastro,mesCadastro,anoCadastro);">/<input type="text" name="mesCadastro" maxlength="2" size="2" onKeyUp="if(this.value.length == 2) this.blur()" onBlur="if(validarMes(this))anoCadastro.focus(); if((diaCadastro.value.length != 0) && (mesCadastro.value.length != 0) && (anoCadastro.value.length != 0))validarQualquerData(diaCadastro,mesCadastro,anoCadastro);">/<input type="text" name="anoCadastro" maxlength="4" size="4" onKeyUp="if(this.value.length == 4) this.blur();" onBlur="if(validarAno(this))if((diaCadastro.value.length != 0) && (mesCadastro.value.length != 0) && (anoCadastro.value.length != 0))validarQualquerData(diaCadastro,mesCadastro,anoCadastro);">
       </p>
     

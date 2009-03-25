@@ -103,9 +103,9 @@ if (tmpnam(tempname) != NULL)
 	fprintf(xsl,"	<!-- Tags' values -->\r\n");
 	fprintf(xsl,"	<xsl:for-each select=\"paciente[@removido = 'nao']\">\r\n");
 	fprintf(xsl,"	<xsl:sort select=\"descendant::nomeCompleto\" />\r\n");
-	fprintf(xsl,"		<xsl:if test=\"triagem/numeroGeral = '%s'\">\r\n", pid);
+	fprintf(xsl,"		<xsl:if test=\"triagem/numeroGeral = '%s'\">\r\n", translate_escape_character_xsl(pid));
 
-	fprintf(xsl,"			<p align=\"right\"><a target=\"blank\" href=\"imprimir.cgi?pid=%s\">Versão para Impressão</a></p>\r\n", pid);
+	fprintf(xsl,"			<p align=\"right\"><a target=\"blank\" href=\"imprimir.cgi?pid=%s\">Versão para Impressão</a></p>\r\n", translate_escape_character_xsl(pid));
 
 	fprintf(xsl,"			<table>\r\n");
 	fprintf(xsl,"			<tr>\r\n");

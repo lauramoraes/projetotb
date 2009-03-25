@@ -108,7 +108,7 @@ if (tmpnam(tempname) != NULL)
 	fprintf(xsl,"\r\n");
 	
 	fprintf(xsl,"<xsl:variable name=\"uid\" select=\"string('%s')\" />\r\n", uid);
-	fprintf(xsl,"<xsl:variable name=\"id\" select=\"string('%s')\" />\r\n", pid);
+	fprintf(xsl,"<xsl:variable name=\"id\" select=\"string('%s')\" />\r\n", translate_escape_character_xsl(pid));
 	fprintf(xsl,"\r\n");
 	
 	fprintf(xsl,"<xsl:template match=\"/\">\r\n");

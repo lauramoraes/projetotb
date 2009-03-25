@@ -239,3 +239,56 @@ char* translate_escape_character (char* palavra)
 	
 	return temp;
 }
+
+char* translate_escape_character_xsl (char *);
+
+char* translate_escape_character_xsl (char* palavra)
+{
+	char* temp;
+	int indice1, indice2;
+
+	if(!(temp = malloc(2*strlen(palavra))))
+		exit(1); // erro na alocação de memoria
+	
+	for(indice1 = indice2 = 0; palavra[indice1] != '\0'; indice1 ++, indice2 ++)
+	{
+		if(palavra[indice1] == '\'')
+		{
+			temp[indice2] = '&';
+			temp[++indice2] = 'a';
+			temp[++indice2] = 'p';
+			temp[++indice2] = 'o';
+			temp[++indice2] = 's';
+			temp[++indice2] = ';';
+		}
+		else
+		{
+			if(palavra[indice1] == '\"')
+			{
+				temp[indice2] = '&';
+				temp[++indice2] = 'q';
+				temp[++indice2] = 'u';
+				temp[++indice2] = 'o';
+				temp[++indice2] = 't';
+				temp[++indice2] = ';';
+			}
+			else
+			{
+				if(palavra[indice1] == '&')
+				{
+				temp[indice2] = '&';
+				temp[++indice2] = 'a';
+				temp[++indice2] = 'm';
+				temp[++indice2] = 'p';
+				temp[++indice2] = ';';
+				}
+				else
+					temp[indice2] = palavra[indice1];
+			}
+		}	
+	}
+	
+	temp[indice2] = '\0';
+	
+	return temp;
+}

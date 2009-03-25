@@ -3,7 +3,20 @@
  */
 
   /***************** VALIDACAO DO FORMULARIO TRIAGEM *****************/
- 
+
+ function validar_campos(campo)
+ {
+	globalvar = campo;
+	if(globalvar.value.indexOf("<!--",0) != -1 ) // --> />
+	{
+		alert("Não é permetido o uso do conjunto de caracteres \"<!--\" por integridade do sintema.\nObrigado."); // --> />
+		globalvar.value = "";
+		setTimeout("globalvar.focus()",250);
+		return false;
+	}
+	return true;
+ }
+
  function returnNameCampoTriagem (name)
  {
 	var newName = "";
@@ -172,9 +185,16 @@
 
 	for(indice = 0; indice < tamanho; indice ++)
 	{
-
+		if(form.elements[indice].type == "textarea")
+		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
+		}
+		
 		if(form.elements[indice].type == "text")
 		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
 			if((form.elements[indice].value == "") && (form.elements[indice].disabled == false))
 			{
 				estado = false;
@@ -362,6 +382,8 @@ function validarCustos(form, data)
   {
     if(form.elements[indice].type == "text")
     {
+	  	if(validar_campos(form.elements[indice]) == false)
+			return false;
       if((form.elements[indice].value == "") && (form.elements[indice].disabled == false))
       {
         estado = false;
@@ -551,9 +573,16 @@ function validar_consulta_medica (form)
 
 	for(indice = 0; indice < tamanho; indice ++)
 	{
-
+		if(form.elements[indice].type == "textarea")
+		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
+		}
+		
 		if(form.elements[indice].type == "text")
 		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
 			if((form.elements[indice].value == "") && (form.elements[indice].disabled == false))
 			{
 				estado = false;
@@ -761,9 +790,16 @@ function validar_follow_up (form)
 
 	for(indice = 0; indice < tamanho; indice ++)
 	{
-
+		if(form.elements[indice].type == "textarea")
+		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
+		}
+		
 		if(form.elements[indice].type == "text")
 		{
+			if(validar_campos(form.elements[indice]) == false)
+				return false;
 			if((form.elements[indice].value == "") && (form.elements[indice].disabled == false))
 			{
 				estado = false;

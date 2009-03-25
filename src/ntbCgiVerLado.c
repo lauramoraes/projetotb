@@ -96,7 +96,7 @@ if (tmpnam(tempname) != NULL)
 	fprintf (xsl,"	<!-- Tags' values -->\r\n");
 	fprintf (xsl,"	<xsl:for-each select=\"paciente[@removido = 'nao']\">\r\n");
 	fprintf (xsl,"	<xsl:sort select=\"descendant::nomeCompleto\" />\r\n");
-	fprintf (xsl,"		<xsl:if test=\"triagem/numeroGeral = '%s'\">\r\n", pid);
+	fprintf (xsl,"		<xsl:if test=\"triagem/numeroGeral = '%s'\">\r\n", translate_escape_character_xsl(pid));
 	fprintf (xsl,"			<span class=\"label\" style=\"font-size:10pt; font-weight:bold;\">Nome: <span style=\"font-weight:normal\" class=\"underline\"><xsl:value-of select=\"triagem/nomeCompleto\" /></span></span>\r\n");
 	fprintf (xsl,"			<br /><br />\r\n");
 	fprintf (xsl,"			<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\r\n");

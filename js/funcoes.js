@@ -1220,3 +1220,14 @@ function validarNumeroGeral()
 		}
 	}
 }
+
+function validarCaracterNumeroGeral (numeroGeral)
+{
+	globalvar = numeroGeral;
+	if(globalvar.value.indexOf("'",0) != -1 )
+	{
+		alert("Não é permetido o uso de aspas simples no campo número geral.\nPor favor, no lugar de aspas simples use aspas dupla.");
+		globalvar.value = "";
+		setTimeout("globalvar.focus()",250);
+	}
+}

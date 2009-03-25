@@ -16,17 +16,23 @@ def fmt2GetMethod(s):
 
 
 escape_table = {"\n" : "\\n", '"' : '\\"', "\r" : "\\r", "'" : "\\'", '\\' : '\\\\'}
- 
-def escapeJavaScript(original):
-    result = ""
-    for c in original:
-        result += escape_table.get(c, c)
-    return result
-	
 
-def encode(textStr):
+escape_table_xsl = {"\n" : "\\n", '"' : '&quot;', "\r" : "\\r", "'" : "&apos;"}
+ 
+def escapeJavaScript(original, modo):
+    result = "";
+    if modo == "0":
+        for c in original:
+            result += escape_table.get(c, c)
+    else:
+        for c in original:
+            result += escape_table_xsl.get(c, c)
+    return result
+
+
+def encode(textStr, modo):
   """Retorna a string de entrada (textStr) codificada em UTF-8."""
-  return escapeJavaScript(textStr.encode("iso-8859-1"));
+  return escapeJavaScript(textStr.encode("iso-8859-1"), modo);
 
 
 def getPatientInfo(dom, pid):

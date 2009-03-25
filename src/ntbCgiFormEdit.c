@@ -329,8 +329,8 @@ int main (void)/*(int argc,char**argv)*/
 			
 			/***** CODIGO EM HTML E JAVASCRIPT QUE PERMITE ALETRAR O NUMERO GERAL *******/
 			printf ("			<!--- Numero geral --->\n");
-			printf ("				<input type=\"hidden\" name=\"antigoNumeroGeral\" value=\"%s\" >\n",pid);
-			printf ("				<span style=\"font-size: 10pt\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" readonly=\"true\"></b></span>\n");
+			printf ("				<input type=\"hidden\" name=\"antigoNumeroGeral\" value=\"%s\" >\n",translate_escape_character_xsl(pid));
+			printf ("				<span style=\"font-size: 10pt\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" readonly=\"true\" onBlur=\"validarCaracterNumeroGeral(this);\"></b></span>\n");
 			printf ("				<input type=\"checkbox\" onClick=\"if(this.checked == true){numeroGeral.readOnly = false; numeroGeral.select();}else{numeroGeral.value = antigoNumeroGeral.value; numeroGeral.readOnly = true; numeroGeral.blur();}\">\n");
 			printf ("				<b><span style=\"font-size: 7pt\">(Clique para editar o N&#186; Geral)</b></span>\n");
 			printf ("			<!--- --->\n");
@@ -1526,8 +1526,8 @@ printf ("		<br /> -->\n");
 printf ("\n");
 	/***** CODIGO EM HTML E JAVASCRIPT QUE PERMITE ALETRAR O NUMERO GERAL *******/
 	printf ("			<!--- Numero geral --->\n");
-	printf ("				<input type=\"hidden\" name=\"antigoNumeroGeral\" value=\"%s\" >\n",pid);
-	printf ("				<span style=\"font-size: 10pt\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" readonly=\"true\"></b></span>\n");
+	printf ("				<input type=\"hidden\" name=\"antigoNumeroGeral\" value=\"%s\" >\n",translate_escape_character_xsl(pid));
+	printf ("				<span style=\"font-size: 10pt\"><b>N&#186; Geral (TB Adapt): <input maxlength=\"6\" size=\"6\" name=\"numeroGeral\" readonly=\"true\" onBlur=\"validarCaracterNumeroGeral(this);\"></b></span>\n");
 	printf ("				<input type=\"checkbox\" onClick=\"if(this.checked == true){numeroGeral.readOnly = false; numeroGeral.select();}else{numeroGeral.value = antigoNumeroGeral.value; numeroGeral.readOnly = true; numeroGeral.blur();}\">\n");
 	printf ("				<b><span style=\"font-size: 7pt\">(Clique para editar o N&#186; Geral)</b></span>\n");
 	printf ("			<!--- --->\n");
