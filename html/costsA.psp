@@ -1,5 +1,6 @@
 <%
 import functions;
+import cgi;
 import mod_python;
 import xml.dom.minidom;
 
@@ -8,6 +9,7 @@ req.add_common_vars();
 envVars = req.subprocess_env.copy();
 userName = envVars["REMOTE_USER"];
 patientId = form.getfirst("pid", None);
+#patientId = envVars["QUERY_STRING"];
 if (patientId is None): psp.redirect("palm.psp");
 
 patientName = functions.getSingleInfo(patientId, "triagem", "nomeCompleto");
@@ -65,6 +67,12 @@ function inicializa()
   setValues();
 }
 
+function inicializaPalm()
+{
+  setValues();
+  inicializaOcultos();
+}
+
 function CostsA()
 {
   this.ondeMora = new Question("ondeMora", "01 - Onde você mora?");
@@ -110,12 +118,18 @@ var fieldsCostA = new CostsA();
 
 </head>
 
-<body onLoad="inicializa()">
+<%
+if functions.isMobile(envVars):
+%>
+<body onLoad="inicializaPalm()">
+<%
+#end if para a apresentacao do menu
+%>
 
 <%
 if not functions.isMobile(envVars):
 %>
-
+<body onLoad="inicializa()">
 <table border="0" id="menu">
 	<tr>
 		<td>
