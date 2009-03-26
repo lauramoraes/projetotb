@@ -1,6 +1,5 @@
 <%
 import functions;
-import cgi;
 import mod_python;
 import xml.dom.minidom;
 
