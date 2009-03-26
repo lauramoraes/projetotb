@@ -121,7 +121,7 @@ if functions.isMobile(envVars):
 %>
 <body onLoad="inicializaPalm()">
 <%
-#end if para a apresentacao do menu
+#end if quando for utilizado no PALM, eh preciso setar os valores antes de esconder os campos
 %>
 
 <%
