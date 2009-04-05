@@ -250,7 +250,7 @@ int main (int argc, char **argv)
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"confusao_mental\" disabled=\"true\">Confus&atilde;o mental\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"ictericia\" disabled=\"true\">Icter&iacute;cia\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"hepatotoxicidade\" disabled=\"true\">Hepatotoxicidade\n");
-	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"vertigem_nistagmo\" disabled=\"true\">Vertigem/Nist&acute;gmo</td>\n");
+	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"vertigem_nistagmo\" disabled=\"true\">Vertigem/Nist&aacute;gmo</td>\n");
 	printf ("	<td><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"hipoacusia\" disabled=\"true\">Hipoacusia\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"crise_convulsiva\" disabled=\"true\">Crise convulsiva\n");
 	printf ("	<br><input name=\"reacoesAdversasTuberculostaticosMaiores\" type=\"checkbox\" value=\"encefalopatia\" disabled=\"true\">Encefalopatia\n");

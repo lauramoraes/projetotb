@@ -951,7 +951,8 @@
 			</tr> 
 			<tr>
 				<td class="title1">Motivo:</td>
-				<td class="answer1"><xsl:value-of select="mudancaMotivo" /></td>
+				<td class="answer1">
+				<xsl:value-of select="mudancaMotivo" />.<xsl:value-of select="motivo" /></td>
 			</tr>
 			<tr>
 				<td class="title2">Tosse diminuída:</td>
@@ -960,6 +961,10 @@
 			<tr>
 				<td class="title1">Peso atual:</td>
 				<td class="answer1"><xsl:value-of select="concat(pesoAtual90dias, ' ', pesoAtual90dias/@unidade)" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Alterações evolutivas no exame físico:</td>
+				<td class="answer1"><xsl:value-of select="alteracoesEvolutivasNoExameFisico" /></td>
 			</tr>
 			<tr>
 				<td class="title2">Probabilidade de TB ativa ao avaliar o RXT:</td>
