@@ -15,7 +15,7 @@ def fmt2GetMethod(s):
   return s;
 
 
-escape_table = {"\n" : "\\n", '"' : '\\"', "\r" : "\\r", "'" : "\\'", '\\' : '\\\\'}
+escape_table = {"\n" : "\\r\\n", '"' : '\\"', "\r" : "\\r", "'" : "\\'", '\\' : '\\\\'}
 
 escape_table_xsl = {"\n" : "\\n", '"' : '&quot;', "\r" : "\\r", "'" : "&apos;"}
  
@@ -60,7 +60,10 @@ def getPatientsList():
   for patient in dom.getElementsByTagName("paciente"):
     removido = patient.getAttribute("removido");
     idNum = patient.getElementsByTagName("triagem")[0].getElementsByTagName("numeroGeral")[0].childNodes[0].data;
-    name = patient.getElementsByTagName("triagem")[0].getElementsByTagName("nomeCompleto")[0].childNodes[0].data;
+    if (patient.getElementsByTagName("triagem")[0].getElementsByTagName("nomeCompleto")[0].childNodes.length):
+      name = patient.getElementsByTagName("triagem")[0].getElementsByTagName("nomeCompleto")[0].childNodes[0].data;
+    else:
+      name = ""
     forms = [s.nodeName for s in patient.childNodes if s.nodeName != '#text'];
     if removido == "nao": ret[name] = {'id' : idNum, 'doneForms' : forms};
   
@@ -69,8 +72,8 @@ def getPatientsList():
 
 
 def getSingleInfo(pid, form, field):
-  """Retorna uma informacao especifica para umd ado paciente. Recebe o numero geral (pid),
-     o nome do formulariod esejado (form), e o nome do campo (field) desejado."""
+  """Retorna uma informacao especifica para um dado paciente. Recebe o numero geral (pid),
+     o nome do formulario desejado (form), e o nome do campo (field) desejado."""
 
   #Opening the xml file and locking it to prevent access from other processes.
   xmlData = open(PATIENTS_FILE_NAME, 'r');
@@ -81,7 +84,10 @@ def getSingleInfo(pid, form, field):
 
   #Retrieving the correct user.
   patient = getPatientInfo(dom, pid);
-  value = patient.getElementsByTagName(form)[0].getElementsByTagName(field)[0].childNodes[0].data;
+  if (patient.getElementsByTagName("triagem")[0].getElementsByTagName("nomeCompleto")[0].childNodes.length):
+    value = patient.getElementsByTagName("triagem")[0].getElementsByTagName("nomeCompleto")[0].childNodes[0].data;
+  else:
+      value = ""
   xmlData.close();
 
   return value;

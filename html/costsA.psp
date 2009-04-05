@@ -65,6 +65,12 @@ function inicializa()
   setValues();
 }
 
+function inicializaPalm()
+{
+  setValues();
+  inicializaOcultos();
+}
+
 function CostsA()
 {
   this.ondeMora = new Question("ondeMora", "01 - Onde você mora?");
@@ -110,12 +116,18 @@ var fieldsCostA = new CostsA();
 
 </head>
 
-<body onLoad="inicializa()">
+<%
+if functions.isMobile(envVars):
+%>
+<body onLoad="inicializaPalm()">
+<%
+#end if quando for utilizado no PALM, eh preciso setar os valores antes de esconder os campos
+%>
 
 <%
 if not functions.isMobile(envVars):
 %>
-
+<body onLoad="inicializa()">
 <table border="0" id="menu">
 	<tr>
 		<td>

@@ -45,12 +45,12 @@ for name in sorted(ptMap.keys()):
   if "custosBeC" in formsDone: statusB = "Editar";
   else: statusB = "Fazer";
   
-  urlFormA = "<a href=costsA.psp?pid=%s>%s</a>" % (fmtId, statusA);
-  urlFormB = "<a href=costsBC.psp?pid=%s>%s</a>" % (fmtId, statusB);
+  urlFormA = "<a href=costsA.psp?pid=%s>%s</a>" % (functions.encode(fmtId,"1"), statusA);
+  urlFormB = "<a href=costsBC.psp?pid=%s>%s</a>" % (functions.encode(fmtId,"1"), statusB);
 %>
     <tr>
-    <td><%= functions.encode(id) %></td>
-    <td><%= functions.encode(name) %></td>
+    <td><%= functions.encode(id,"1") %></td>
+    <td><%= functions.encode(name,"1") %></td>
     <td><%= urlFormA %></td>
     <td><%= urlFormB %></td>
 <%
