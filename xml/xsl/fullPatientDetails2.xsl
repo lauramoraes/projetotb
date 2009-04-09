@@ -941,7 +941,7 @@
 			</tr>
 			<tr>
 				<td class="title2">Data da mudança:</td>
-				<td class="answer2"><xsl:value-of select="mudanca_dia" />/<xsl:value-of select="mudanca_mes" />/<xsl:value-of select="mudanca_ano" /></td>
+				<td class="answer2"><xsl:value-of select="mudanca_mes" />/<xsl:value-of select="mudanca_ano" /></td>
 			</tr>
 			<tr>
 				<td class="title1">Fármacos utilizados:</td>
