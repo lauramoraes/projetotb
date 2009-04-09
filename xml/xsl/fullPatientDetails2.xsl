@@ -769,6 +769,13 @@
 				<td class="evaluated">Avaliado pelo(a) médico(a): <xsl:value-of select="avaliador" /></td>
 				<td class="evaluated">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" />/<xsl:value-of select="ano_inclusao" /></td>
 			</tr>
+
+                        <tr>
+                                <td class="title2">Cadastrado por:</td>
+                                <td class="answer2"><xsl:value-of select="quemCadastrou" /></td>
+                        </tr>
+
+
 </xsl:template>
 
 
