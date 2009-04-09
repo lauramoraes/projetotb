@@ -324,10 +324,9 @@ function validarCampoNumericoPositivo(campo)
 	{
 		if ((!isNumberString(campo.value)) || (campo.value <= 0))
 		{
-			alert("Valor inválido, digite somente números maiores que zero.");
-			
 			campo.value = "";
-			setTimeout("globalvar.focus()",250);
+			campo.select();
+			alert("Valor inválido, digite somente números maiores que zero.");
 		}
 	}
 }
