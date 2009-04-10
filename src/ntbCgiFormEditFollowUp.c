@@ -260,7 +260,9 @@ document = fopen(XML_FILE_PATH, "r");
 			else
 				cur_node = cur_node->next;		
 		}
-		printf ("\t\ttabela[0] = [\"%s\",\"%s\"];\n", cur_node_children->name, cur_node_children->children->content);		//Coloca a primeira posicao da tabela como Numero Geral
+		temp = translate_escape_character(cur_node_children->children->content);
+		printf ("\t\ttabela[0] = [\"%s\",\"%s\"];\n", cur_node_children->name, temp);//Coloca a primeira posicao da tabela como Numero Geral
+		free(temp);	
 
 		/*
 			saindo deste lup, teremos o noh do paciente que procuramos em cur_node
@@ -352,7 +354,7 @@ document = fopen(XML_FILE_PATH, "r");
 	printf ("		<br>\n");
 	printf ("\n");
 	printf ("		<!-- Numero Geral -->\n");
-	printf ("	<!-- --><b>N&uacute;mero Geral : </b><input name=\"pid\" type=\"text\" size=\"6\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>\n",pid);
+	printf ("	<!-- --><b>N&uacute;mero Geral : </b><input name=\"pid\" type=\"text\" size=\"6\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>\n",translate_escape_character_xsl(pid));
 	printf ("	<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" id=\"tabelaFollowUp\" class=\"tabela\">\n");
 	printf ("		<tr>\n");
 	printf ("\n");
