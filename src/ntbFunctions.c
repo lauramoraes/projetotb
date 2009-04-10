@@ -241,6 +241,220 @@ char* translate_escape_character (char* palavra)
 }
 
 char* translate_escape_character_xsl (char *);
+/*
+char* translate_escape_character_xsl (char* palavra)
+{
+	char* temp;
+	int indice1, indice2;
+
+	if(!(temp = malloc(10*strlen(palavra))))
+		exit(1); // erro na alocaзгo de memoria
+	
+	memset(temp,0,10*strlen(palavra));
+	
+	for(indice1 = 0; palavra[indice1] != '\0'; indice1 ++)
+	{
+		switch (palavra[indice1])
+		{
+			case '\'':
+				strcat(temp, "&apos;");
+				break;
+				
+			case '\"':
+				strcat(temp, "&#34;");
+				break;
+			
+			case '&':
+				strcat(temp, "&#38;");
+				break;
+				
+			case 'б':
+				strcat(temp, "&#225;");
+				break;
+				
+			case 'а':
+				strcat(temp, "&#224;");
+				break;
+				
+			case 'в':
+				strcat(temp, "&#226;");
+				break;
+				
+			case 'г':
+				strcat(temp, "&#227;");
+				break;
+			
+			case 'Б':
+				strcat(temp, "&#193;");
+				break;
+				
+			case 'А':
+				strcat(temp, "&#192;");
+				break;
+				
+			case 'В':
+				strcat(temp, "&#194;");
+				break;
+				
+			case 'Г':
+				strcat(temp, "&#195;");
+				break;
+			
+			case 'й':
+				strcat(temp, "&#233;");
+				break;
+				
+			case 'и':
+				strcat(temp, "&#232;");
+				break;
+				
+			case 'к':
+				strcat(temp, "&#234;");
+				break;
+				
+			case 'Й':
+				strcat(temp, "&#201;");
+				break;
+				
+			case 'И':
+				strcat(temp, "&#200;");
+				break;
+				
+			case 'К':
+				strcat(temp, "&#202;");
+				break;
+				
+			case 'н':
+				strcat(temp, "&#237;");
+				break;
+				
+			case 'м':
+				strcat(temp, "&#236;");
+				break;
+				
+			case 'о':
+				strcat(temp, "&#238;");
+				break;
+
+			case 'Н':
+				strcat(temp, "&#205;");
+				break;
+				
+			case 'М':
+				strcat(temp, "&#204;");
+				break;
+				
+			case 'О':
+				strcat(temp, "&#206;");
+				break;
+
+			case 'у':
+				strcat(temp, "&#243;");
+				break;
+				
+			case 'т':
+				strcat(temp, "&#242;");
+				break;
+				
+			case 'ф':
+				strcat(temp, "&#244;");
+				break;
+				
+			case 'х':
+				strcat(temp, "&#245;");
+				break;
+				
+			case 'У':
+				strcat(temp, "&#211;");
+				break;
+				
+			case 'Т':
+				strcat(temp, "&#210;");
+				break;
+				
+			case 'Ф':
+				strcat(temp, "&#212;");
+				break;
+				
+			case 'Х':
+				strcat(temp, "&#213;");
+				break;
+			
+			case 'ъ':
+				strcat(temp, "&#250;");
+				break;
+				
+			case 'щ':
+				strcat(temp, "&#249;");
+				break;
+				
+			case 'ы':
+				strcat(temp, "&#251;");
+				break;
+
+			case 'Ъ':
+				strcat(temp, "&#218;");
+				break;
+				
+			case 'Щ':
+				strcat(temp, "&#217;");
+				break;
+				
+			case 'Ы':
+				strcat(temp, "&#219;");
+				break;
+			
+			case 'ь':
+				strcat(temp, "&#252;");
+				break;
+			
+			case 'Ь':
+				strcat(temp, "&#220;");
+				break;
+				
+			case 'з':
+				strcat(temp, "&#231;");
+				break;
+				
+			case 'З':
+				strcat(temp, "&#199;");
+				break;
+				
+			case 'с':
+				strcat(temp, "&#241;");
+				break;
+				
+			case 'С':
+				strcat(temp, "&#209;");
+				break;
+				
+			case '<':
+				strcat(temp, "&#60;");
+				break;
+				
+			case '>':
+				strcat(temp, "&#62;");
+				break;
+				
+			case '/':
+				strcat(temp, "&#47;");
+				break;
+				
+			case '\\':
+				strcat(temp, "&#92;");
+				break;
+			
+			default:
+				temp[strlen(temp)] =  palavra[indice1];
+				break;
+			
+		}
+	}
+	
+	temp[strlen(temp)] = '\0';
+	
+	return temp;
+}*/
 
 char* translate_escape_character_xsl (char* palavra)
 {

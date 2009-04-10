@@ -1223,10 +1223,22 @@ function validarNumeroGeral()
 function validarCaracterNumeroGeral (numeroGeral)
 {
 	globalvar = numeroGeral;
-	if(globalvar.value.indexOf("'",0) != -1 )
+
+	if(globalvar.value.length==0)
+		return (true);
+		
+	var RefString="1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-";
+	
+	for (Count=0; Count < globalvar.value.length; Count++)
 	{
-		alert("Não é permetido o uso de aspas simples no campo número geral.\nPor favor, no lugar de aspas simples use aspas dupla.");
-		globalvar.value = "";
-		setTimeout("globalvar.focus()",250);
+		TempChar= globalvar.value.substring (Count, Count+1);
+		if (RefString.indexOf (TempChar, 0)==-1)
+		{
+			alert("Por favor, preencha esse campo apenas com os seguintes caracteres;\na...z(letras minúsculas de \"a\" a \"z\")\nA...Z(letras maiúsculas de \"A\" a \"Z\")\n0...9(números de zero a nove)\n.- (ponto final, sinal menos)");
+			globalvar.value = "";
+			setTimeout("globalvar.focus()",250);
+			return (false);
+		}
 	}
+	return (true);
 }
