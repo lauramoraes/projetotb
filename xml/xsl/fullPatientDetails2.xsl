@@ -1035,7 +1035,7 @@
 			</tr>
 			<tr>
 				<td class="evaluated">Avaliado pelo(a) médico(a): <xsl:value-of select="avaliadorMedicoFollowUp" /></td>
-				<td class="evaluated">Data da avaliação: <xsl:value-of select="dataMedicoFollowUp" /></td>
+				<td class="evaluated">Data da avaliação: <xsl:value-of select="dia_FollowUp" />/<xsl:value-of select="mes_FollowUp" />/<xsl:value-of select="ano_FollowUp" /></td>
 			</tr>
 </xsl:template>
 
