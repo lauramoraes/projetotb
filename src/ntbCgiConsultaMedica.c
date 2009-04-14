@@ -306,9 +306,9 @@ int main (int argc, char **argv)
 	printf ("\n");
 	printf ("	<tr class=\"par\">\n");
 	printf ("		<td><script>document.write(tabFields[17][1]);</script></td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"positivo\">Positivo</td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"negativo\">Negativo</td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"ignorado\">N&atilde;o realizado/<br>Resultado desconhecido</br></td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"positivo\" onClick=\"dia_antihiv.disabled = false; mes_antihiv.disabled = false; ano_antihiv.disabled = false;\">Positivo</td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"negativo\" onClick=\"dia_antihiv.disabled = false; mes_antihiv.disabled = false; ano_antihiv.disabled = false;\">Negativo</td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"ignorado\" onClick=\"dia_antihiv.disabled = true; mes_antihiv.disabled = true; ano_antihiv.disabled = true;\">N&atilde;o realizado/<br>Resultado desconhecido</br></td>\n");
 	printf ("	</tr>\n");
 	printf ("\n");
 	printf ("	<!-- DATA ANTI-HIV -->\n");

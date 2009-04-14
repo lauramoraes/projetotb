@@ -268,7 +268,9 @@ int main (void)/*(int argc,char**argv)*/
 			else
 				cur_node = cur_node->next;		
 		}
-		printf ("\t\ttabela[0] = [\"%s\",\"%s\"];\n", cur_node_children->name, cur_node_children->children->content);		//Coloca a primeira posicao da tabela como Numero Geral
+		temp = translate_escape_character(cur_node_children->children->content);
+		printf ("\t\ttabela[0] = [\"%s\",\"%s\"];\n", cur_node_children->name, temp);//Coloca a primeira posicao da tabela como Numero Geral
+		free(temp);	
 
 		/*
 			saindo deste lup, teremos o noh do paciente que procuramos em cur_node
@@ -355,7 +357,7 @@ int main (void)/*(int argc,char**argv)*/
 	printf ("	<div align=\"center\">\n");
 	printf ("		<br /><br />\n");
 	printf ("	<!-- --><input type=\"hidden\" name=\"form\" value=\"consultaMedica\" />\n");
-	printf ("	<!-- --><div class=\"h4\"><b><script>document.write(tabFields[39][1]);</script><input name=\"pid\" size=\"6\" type=\"text\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n",numeroGeral);
+	printf ("	<!-- --><div class=\"h4\"><b><script>document.write(tabFields[39][1]);</script><input name=\"pid\" size=\"6\" type=\"text\" value=\"%s\" readonly=\"readonly\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n",translate_escape_character_xsl(numeroGeral));
 	printf ("		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n");
 	printf ("		<script>document.write(tabFields[40][1]);</script><input maxlength=\"2\" size=\"2\" name=\"dia_inclusao\" onKeyUp=\"if(this.value.length == 2)mes_inclusao.focus();\" onBlur=\"validarDia(this);\">&nbsp;/\n");
 	printf ("											<input maxlength=\"2\" size=\"2\" name=\"mes_inclusao\" onKeyUp=\"if(this.value.length == 2)ano_inclusao.focus();\" onBlur=\"validarMes(this);\">&nbsp;/\n");
@@ -471,9 +473,9 @@ int main (void)/*(int argc,char**argv)*/
 	printf ("\n");
 	printf ("	<tr class=\"par\">\n");
 	printf ("		<td><script>document.write(tabFields[17][1]);</script></td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"positivo\">Positivo</td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"negativo\">Negativo</td>\n");
-	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"ignorado\">N&atilde;o realizado/<br>Resultado desconhecido</br></td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"positivo\" onClick=\"dia_antihiv.disabled = false; mes_antihiv.disabled = false; ano_antihiv.disabled = false;\">Positivo</td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"negativo\" onClick=\"dia_antihiv.disabled = false; mes_antihiv.disabled = false; ano_antihiv.disabled = false;\">Negativo</td>\n");
+	printf ("		<td><input name=\"testeHIV\" type=\"radio\" value=\"ignorado\" onClick=\"dia_antihiv.disabled = true; mes_antihiv.disabled = true; ano_antihiv.disabled = true;\">N&atilde;o realizado/<br>Resultado desconhecido</br></td>\n");
 	printf ("	</tr>\n");
 	printf ("\n");
 	printf ("	<!-- DATA ANTI-HIV -->\n");

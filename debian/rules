@@ -1,0 +1,78 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+configure: configure-stamp
+configure-stamp:
+	@dh_testdir
+	@touch configure-stamp
+
+
+build: build-stamp
+
+build-stamp: configure-stamp  
+	@dh_testdir
+	@echo "Building with scons..."
+	(cd build; scons -Q)
+	@touch $@
+
+clean: 
+	@echo Cleaning...
+	@dh_testdir
+	@dh_testroot
+	@rm -f build-stamp configure-stamp
+	(cd build; scons -Qc)
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	(cd build; PROJETOTB_INST_DIR=$(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe scons -Q install)
+	rm -f $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/.htaccess
+
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+#	dh_installexamples
+	dh_install
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_python
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+#	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/xml/
+	chmod -R g+w,o-rwx $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/xml/
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/backup/
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/backup/
+	chown root:www-data $(CURDIR)/debian/guadalupe/etc/guadalupe/htpasswd
+	chmod 0640 $(CURDIR)/debian/guadalupe/etc/guadalupe/htpasswd
+#	dh_perl
+#	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
