@@ -85,7 +85,10 @@ int main (void)/*(int argc,char**argv)*/
 	printf ("	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/menu.css\">\n");
 	printf ("	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form.css\">\n");
 	printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/funcoes.js\"></script>\n");
-	printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/validar.js\"></script>\n");
+	if(!(strcmp(username,"digitador")))
+		printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/validar_.js\"></script>\n");
+	else
+		printf ("	<script charset=\"ISO-8859-1\" language=javascript src=\"js/validar.js\"></script>\n");
 	printf ("\n");
 	printf ("	<script>/* Funcao que  oculta as linhas do formulario que nao deverao se vistas em seu carregamento inicial */\n");
 	printf ("\n");

@@ -19,7 +19,9 @@ if len(costs) > 0: isNewForm = "false";
 #Como o mobile IE nao entende quando colocamos JS em arquivos separados,
 #este bacalhau resolve o problema (obrigado Microsoft...).
 jsText = open(functions.PROJECT_PATH + "js/funcoes.js", "r").read();
-jsText += open(functions.PROJECT_PATH + "js/validar.js", "r").read();
+
+if userName != "digitador": jsText += open(functions.PROJECT_PATH + "js/validar.js", "r").read();
+
 %>
 
 <html>
