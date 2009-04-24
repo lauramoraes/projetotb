@@ -374,6 +374,6 @@ int main (void)
 	xmlFreeNode(edited_patient);
 	flock(fileno(document), LOCK_EX);
 	fclose(document);
-	
+	autoBackup();
 	return 0;
 }

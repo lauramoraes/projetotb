@@ -38,6 +38,8 @@ void getTagNameAndTextContent (char *, parsedvars *);
 
 char* translate_escape_character (char*);
 
+void autoBackup(void);
+
 #endif
 
 /* $RCSfile$ */

@@ -2,6 +2,8 @@ import xml.dom.minidom;
 import re;
 import os;
 import fcntl;
+import os.path
+import commands
 
 PROJECT_PATH = os.path.dirname(__file__) + os.path.sep;
 USERS_FILE_NAME = PROJECT_PATH + "xml/users.xml";
@@ -125,4 +127,13 @@ def isMobile(envVars):
   pelo mod_python. Do contrario, temos que usar a variavel req."""
   if "PPC" in envVars["HTTP_USER_AGENT"]: return True;
   else: return False;
-  
+
+def autoBackup():
+  """Verifica se o sistema de backup automatico existe e executa-o.
+  """
+  AUTOBACKUP_SCRIPT = '/usr/lib/projetotb/tbbackup/tbbackup'
+  if not os.path.exists(AUTOBACKUP_SCRIPT):
+    return
+  (status, out) = commands.getstatusoutput(
+      "%s %s %s"%(AUTOBACKUP_SCRIPT, PATIENTS_FILE_NAME, '../guadalupeXMLRepo')
+    )

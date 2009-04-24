@@ -19,6 +19,12 @@
 #include "ntbTypes.h"
 #include "ntbFunctions.h"
 
+/* Headers for stat(), fork(), wait() and execl() */
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
 /*
 Gets current-user's public html path
 */
@@ -506,3 +512,41 @@ char* translate_escape_character_xsl (char* palavra)
 	
 	return temp;
 }
+
+/* Automated backup code */
+#define AUTOBACKUP_SCRIPT "/usr/lib/projetotb/tbbackup/tbbackup"
+
+/**
+ * Check if the script for automatic backup exists, and call it.
+ */
+void autoBackup(void)
+{
+    struct stat statBuf;
+    pid_t childPid;
+    int childStatus;
+
+    if (stat(AUTOBACKUP_SCRIPT, &statBuf) != 0) {
+        // Backup script not found.
+        return;
+    }
+
+    // Fork and execute the script
+    if (childPid = fork()) {
+        // We're the parent process
+        wait(&childStatus);
+    } else {
+        // We're th children process.
+        // Silence stdout and stderr
+        close(1);
+        close(2);
+        execl(AUTOBACKUP_SCRIPT,
+                AUTOBACKUP_SCRIPT,
+                "xml/pacientesGuadalupe.xml",
+                "../guadalupeXMLRepo",
+                (char *)NULL);
+        // Will only reach here if can't execute the script.
+        exit(-1);
+    }
+}
+
+

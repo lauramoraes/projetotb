@@ -269,6 +269,6 @@ if ((xmlSaveFormatFileEnc(XML_FILE_PATH, doc, "ISO-8859-1", 1)) < 0)
 	usualFreeMemory(doc);
 	flock(fileno(document), LOCK_EX);
 	fclose(document);
-	
+	autoBackup();
 	return 0;
 }

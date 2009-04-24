@@ -471,5 +471,7 @@ int main (void)
 		fclose(fp);
 	}
 	
+        autoBackup();
+
 	return 0;
 }

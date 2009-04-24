@@ -328,6 +328,6 @@ int main (void)
 	usualFreeMemory(doc);
 	
 	xmlFreeNode(edited_patient);*/
-	
+	autoBackup();
 	return 0;
 }

@@ -59,6 +59,8 @@ xmlData.write(dom.toxml(encoding = xmlEncoding));
 xmlData.truncate();
 xmlData.close(); #Releasing the file (calls also unlock).
 
+functions.autoBackup()
+
 returnPage = "busca.cgi?uid=%s" % functions.fmt2GetMethod(os.environ["REMOTE_USER"]);
 if functions.isMobile(os.environ): returnPage = "palm.psp";
 
