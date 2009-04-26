@@ -1,6 +1,5 @@
 cgiMap = {}
 cgiMap['addPatient'] = ['ntbCgiAddPatient.c']
-cgiMap['backup'] = ['backup.c']
 cgiMap['formsStatus'] = ['ntbCgiFormsStatus.c']
 cgiMap['triagem'] = ['ntbCgiTriagem.c']
 cgiMap['consultaMedica'] = ['ntbCgiConsultaMedica.c']

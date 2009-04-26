@@ -52,7 +52,7 @@ for cgi, srcs in cgilist.cgiMap.iteritems():
 #Como os outros arquivos nao precisam de compilacao, apenas os adicionamos a lista
 #de instalacao.
 htmlList = getSourceFiles('../html', ['htm', 'html', 'psp']);
-scriptList = getSourceFiles('../script', ['py', 'sh', 'php']);
+scriptList = getSourceFiles('../script', ['py', 'sh', 'php', 'cgi']);
 jsList = getSourceFiles('../js', ['js']);
 cssList = getSourceFiles('../css', ['css']);
 imgList = getSourceFiles('../images', ['jpg', 'gif', 'png']);
