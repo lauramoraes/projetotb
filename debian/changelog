@@ -1,3 +1,9 @@
+projetotb (1.13.0-1) unstable; urgency=low
+
+  * Melhoras no backup
+
+ -- Felipe Fink Grael <felipefg@moonglade.apfel-d.com>  Sun, 26 Apr 2009 14:37:17 -0300
+
 projetotb (1.12.0-1) unstable; urgency=low
 
   * Validação de campos suprimida para digitador nos outros formularios.

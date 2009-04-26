@@ -1,6 +1,6 @@
 Source: projetotb
-Section: web
-Priority: extra
+Section: projetotb
+Priority: standard
 Maintainer: Felipe Fink Grael <felipefg@gmail.com>
 Build-Depends: debhelper (>= 7), scons, libxml2-dev
 Standards-Version: 3.8.0
