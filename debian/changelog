@@ -1,3 +1,9 @@
+projetotb (2.0.0-1) stable; urgency=low
+
+  * Versão estavel 2.0.0
+
+ -- Felipe Fink Grael <felipefg@moonglade.apfel-d.com>  Wed, 13 May 2009 01:11:16 -0300
+
 projetotb (1.13.0-1) unstable; urgency=low
 
   * Melhoras no backup
