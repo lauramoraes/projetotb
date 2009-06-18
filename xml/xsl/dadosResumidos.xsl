@@ -9,6 +9,10 @@
 
 <xsl:template match="triagem">
 			<tr>
+				<td class="title">Data da avaliação:</td>
+				<td class="answer"><xsl:value-of select="concat(dia_inclusao,'/',mes_inclusao,'/',ano_inclusao,' ',hora_inclusao)" /></td>
+			</tr>
+			<tr>
 				<td class="title" width="50%">Número Geral:</td>
 				<td class="answer" width="50%"><xsl:value-of select="numeroGeral" /></td>
 			</tr>
@@ -182,15 +186,11 @@
 				</tr>
 			</xsl:if>
 			<tr>
-				<td class="label" colspan="2"></td>
+				<td class="label" colspan="2">&#160;</td>
 			</tr>
 			<tr>
 				<td class="title">Avaliado pelo(a) enfermeiro(a):</td>
 				<td class="answer"><xsl:value-of select="avaliador" /></td>
-			</tr>
-			<tr>
-				<td class="title">Data da avaliação:</td>
-				<td class="answer"><xsl:value-of select="concat(dia_inclusao,'/',mes_inclusao,'/',ano_inclusao,' ',hora_inclusao)" /></td>
 			</tr>
 			<tr>
 				<td class="title">Observações:</td>

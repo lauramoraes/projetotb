@@ -38,7 +38,7 @@
 			-->
 		<xsl:if test="consultaMedica">
 			<tr>
-				<td class="title3" colspan="2">Consulta M�dica</td>
+				<td class="title3" colspan="2">Consulta M&eacute;dica</td>
 			</tr>
 			<xsl:apply-templates select="consultaMedica" />
 			<tr>
