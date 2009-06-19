@@ -628,6 +628,15 @@
 				<td class="answer1"><xsl:value-of select="quimioprofilaxia" /></td>
 			</tr>
 			<tr>
+				<td class="title1">Usou INH?</td>
+				<td class="answer1"><xsl:value-of select="inhCagePositivo" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Usou RIF?</td>
+				<td class="answer1"><xsl:value-of select="rifCagePositivo" /></td>
+			</tr>
+			<!--
+			<tr>
 				<td class="title1">Se Cage positivo, usou INH?</td>
 				<td class="answer1"><xsl:value-of select="inhCagePositivo" /></td>
 			</tr>
@@ -635,6 +644,7 @@
 				<td class="title1">Se Cage positivo, usou RIF?</td>
 				<td class="answer1"><xsl:value-of select="rifCagePositivo" /></td>
 			</tr>
+			-->
 			<tr>
 				<td class="title1">Data da quimioprofilaxia:</td>
 				<td class="answer1"><xsl:value-of select="mes_quimio" />/<xsl:value-of select="ano_quimio" /></td>
