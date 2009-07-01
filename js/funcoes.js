@@ -1155,14 +1155,39 @@ function validarNumeroDeDigitos (campo, num)
 
 function desabilitarRadio (name, num)
 {
-	for(indice=0; indice< num; indice++)
+	for(indice=0; indice < num; indice++)
 		name[indice].disabled = true;
 }
 
 function habilitarRadio (name, num)
 {
-	for(indice=0; indice< num; indice++)
+	for(indice=0; indice < num; indice++)
 		name[indice].disabled = false;
+}
+
+function desmarcarCheckboxes (name)
+{
+	for(indice=0; indice < name.length; indice++)
+		name[indice].checked = false;
+}
+
+function desmarcarCheckboxesExceto (name, name2)
+{
+	for(indice=0; indice < name.length; indice++)
+		if (name[indice] != name2) name[indice].checked = false;
+}
+
+function todosDesmarcados(name)
+{
+	for(indice=0; indice < name.length; indice++)
+		if (name[indice].checked == true) return false;
+	return true;
+}
+
+function marcarCheckboxes (name)
+{
+	for(indice=0; indice < name.length; indice++)
+		name[indice].checked = true;
 }
 
 /*

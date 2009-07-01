@@ -286,7 +286,10 @@
 			</xsl:if>
 			<tr>
 				<td class="title1 wrap">Antes de ficar doente tomava alguma bebida alcoólica? Qual tipo de bebida prefere ou preferia?</td>
-				<td class="answer1"><xsl:value-of select="bebida" /></td>
+				<td class="answer1">
+					<xsl:for-each select="bebida"><xsl:value-of select="." />. </xsl:for-each>
+					<!--<xsl:value-of select="bebida" />-->
+				</td>
 			</tr>
 			<xsl:if test="bebida[. != 'nenhuma']">
 				<tr>
@@ -311,7 +314,7 @@
 				</tr>
 			</xsl:if>
 			<tr>
-				<td class="title2">Cage positivo:</td>
+				<td class="title2">Cage:</td>
 				<td class="answer2"><xsl:value-of select="cage" /></td>
 			</tr>
 			

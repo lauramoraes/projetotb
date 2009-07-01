@@ -21,7 +21,7 @@
 			<br /><br />
 			<table border="0" cellspacing="0" cellpadding="0" align="center">
 			<tr>
-				<td class="title3" colspan="2">Triagem</td>
+				<td class="title3" colspan="2" align="center"><b>Triagem</b></td>
 			</tr>
 			<xsl:apply-templates select="triagem" />
 			<tr>
@@ -38,7 +38,7 @@
 			-->
 		<xsl:if test="consultaMedica">
 			<tr>
-				<td class="title3" colspan="2">Consulta M&eacute;dica</td>
+				<td class="title3" colspan="2" align="center"><b><![CDATA[Consulta M&eacute;dica]]></b></td>
 			</tr>
 			<xsl:apply-templates select="consultaMedica" />
 			<tr>
@@ -56,7 +56,7 @@
 			-->
 		<xsl:if test="followUp">
 			<tr>
-				<td class="title3" colspan="2">Follow Up</td>
+				<td class="title3" colspan="2" align="center"><b>Follow Up</b></td>
 			</tr>
 			<xsl:apply-templates select="followUp" />
 			<tr>
