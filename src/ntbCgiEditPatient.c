@@ -127,7 +127,7 @@ int main (void)
 	document = fopen(XML_FILE_PATH, "r+");
  	
  	if (document == NULL) {
-        printError("O arquivo de pacientes não pode ser aberto");
+        printError("O arquivo de pacientes n&atilde;o pode ser aberto");
         exit(0);
     }
     
@@ -316,7 +316,6 @@ int main (void)
 		new_node = xmlNewNode (NULL, strUTF);
 		free(strUTF);//frees input->name
 		
-		
 		/* Validate tag value input against UTF-8 */
 		strUTF = fixCgiStr((unsigned char *)input->value);
 		if (!strUTF)
@@ -330,7 +329,6 @@ int main (void)
 		
 		xmlNodeAddContent (new_node, strUTF);
 		free(strUTF);//frees input->value
-		
 		
 		xmlAddChild (new_form, new_node);
 	}

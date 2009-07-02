@@ -9,6 +9,10 @@
 
 <xsl:template match="triagem">
 			<tr>
+				<td class="title">Data da avaliação:</td>
+				<td class="answer"><xsl:value-of select="concat(dia_inclusao,'/',mes_inclusao,'/',ano_inclusao,' ',hora_inclusao)" /></td>
+			</tr>
+			<tr>
 				<td class="title" width="50%">Número Geral:</td>
 				<td class="answer" width="50%"><xsl:value-of select="numeroGeral" /></td>
 			</tr>
@@ -42,6 +46,14 @@
 				<td class="title">Peso atual:</td>
 				<td class="answer"><xsl:value-of select="pesoAtual" /> kg</td>
 			</tr>
+			<tr>
+				<td class="title">Altura:</td>
+				<td class="answer"><xsl:value-of select="altura" /> cm</td>
+			</tr>
+			<tr>
+				<td class="title">IMC:</td>
+				<td class="answer"><xsl:value-of select="imc" /> kg/m&#178;</td>
+			</tr>
 			
 			
 			<tr>
@@ -52,30 +64,36 @@
 			<tr>
 				<td class="title">Tosse:</td>
 				<td class="answer"><xsl:value-of select="tosse" />
-					<xsl:if test="tosse[(. != 'nao') and (tosse_semanas != '')]">
-						<xsl:value-of select="concat('. ',tosse_semanas,' semanas')" />
+					<xsl:if test="(tosse = 'sim') and (tosse_semanas != '')">
+						<xsl:value-of select="concat('. ',tosse_semanas,' semana(s)')" />
 					</xsl:if>
 				</td>
 			</tr>
 			<tr>
 				<td class="title">Expectoração:</td>
 				<td class="answer"><xsl:value-of select="expectoracao" />
-					<xsl:if test="expectoracao[(. != 'nao') and (expectoracao_semanas != '')]">
-						<xsl:value-of select="concat('. ',expectoracao_semanas,' semanas')" />
+					<xsl:if test="(expectoracao = 'sim') and (expectoracao_semanas != '')">
+						<xsl:value-of select="concat('. ',expectoracao_semanas,' semana(s)')" />
 					</xsl:if>
 				</td>
-				
-				<!-- repetir para os outros sintomas que tem como info adicional semanas -->
 			</tr>
 			<tr>
 				<td class="title">Hemoptóico:</td>
-				<td class="amswer"><xsl:value-of select="hemoptoico" /></td>
+				<td class="amswer"><xsl:value-of select="hemoptoico" />
+					<xsl:if test="(hemoptoico = 'sim') and (hemoptoico_semanas != '')">
+						<xsl:value-of select="concat('. ',hemoptoico_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Hemoptise:</td>
-				<td class="answer"><xsl:value-of select="hemoptise" /></td>
+				<td class="answer"><xsl:value-of select="hemoptise" />
+					<xsl:if test="(hemoptise = 'sim') and (hemoptise_semanas != '')">
+						<xsl:value-of select="concat('. ',hemoptise_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
-			<xsl:if test="hemoptise[. = 'sim']">
+			<xsl:if test="hemoptise = 'sim'">
 				<tr>
 					<td class="title">Quantidade:</td>
 					<td class="answer"><xsl:value-of select="hemoptiseQtd" /></td>
@@ -83,27 +101,51 @@
 			</xsl:if>
 			<tr>
 				<td class="title">Sudorese noturna:</td>
-				<td class="answer"><xsl:value-of select="sudorese" /></td>
+				<td class="answer"><xsl:value-of select="sudorese" />
+					<xsl:if test="(sudorese = 'sim') and (sudorese_semanas != '')">
+						<xsl:value-of select="concat('. ',sudorese_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Febre:</td>
-				<td class="answer"><xsl:value-of select="febre" /></td>
+				<td class="answer"><xsl:value-of select="febre" />
+					<xsl:if test="(febre = 'sim') and (febre_semanas != '')">
+						<xsl:value-of select="concat('. ',febre_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Dispnéia:</td>
-				<td class="answer"><xsl:value-of select="dispneia" /></td>
+				<td class="answer"><xsl:value-of select="dispneia" />
+					<xsl:if test="(dispneia = 'sim') and (dispneia_semanas != '')">
+						<xsl:value-of select="concat('. ',dispneia_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Perda do apetite:</td>
-				<td class="answer"><xsl:value-of select="perdaApetite" /></td>
+				<td class="answer"><xsl:value-of select="perdaApetite" />
+					<xsl:if test="(perdaApetite = 'sim') and (perdaApetite_semanas != '')">
+						<xsl:value-of select="concat('. ',perdaApetite_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Perda de peso (> 10%):</td>
-				<td class="answer"><xsl:value-of select="perdaDePeso" /></td>
+				<td class="answer"><xsl:value-of select="perdaDePeso" />
+					<xsl:if test="(perdaDePeso = 'sim') and (perdaDePeso_semanas != '')">
+						<xsl:value-of select="concat('. ',perdaDePeso_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Dor torácica</td>
-				<td class="answer"><xsl:value-of select="dorToracica" /></td>
+				<td class="answer"><xsl:value-of select="dorToracica" />
+					<xsl:if test="(dorToracica = 'sim') and (dorToracica_semanas != '')">
+						<xsl:value-of select="concat('. ',dorToracica_semanas,' semana(s)')" />
+					</xsl:if>
+				</td>
 			</tr>
 			<tr>
 				<td class="title">Total de pontos:</td>
@@ -112,7 +154,7 @@
 			
 			
 			<tr>
-				<td class="label" colspan="2">História da Tuberculose</td>
+				<td class="label" colspan="2">História de Tuberculose</td>
 			</tr>
 			
 			
@@ -159,8 +201,12 @@
 			<tr>
 				<td class="label" colspan="2">Resultado PPD</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td class="e4">Aplicação da prova tuberculínica:</td>
+				<td class="answer"><xsl:value-of select="inclusao" /></td>
+			</tr>-->
+			<tr>
+				<td class="e4">Inclusão na pesquisa:</td>
 				<td class="answer"><xsl:value-of select="inclusao" /></td>
 			</tr>
 			<xsl:if test="inclusao[. = 'sim']">
@@ -182,15 +228,11 @@
 				</tr>
 			</xsl:if>
 			<tr>
-				<td class="label" colspan="2"></td>
+				<td class="label" colspan="2">&#160;</td>
 			</tr>
 			<tr>
 				<td class="title">Avaliado pelo(a) enfermeiro(a):</td>
 				<td class="answer"><xsl:value-of select="avaliador" /></td>
-			</tr>
-			<tr>
-				<td class="title">Data da avaliação:</td>
-				<td class="answer"><xsl:value-of select="concat(dia_inclusao,'/',mes_inclusao,'/',ano_inclusao,' ',hora_inclusao)" /></td>
 			</tr>
 			<tr>
 				<td class="title">Observações:</td>

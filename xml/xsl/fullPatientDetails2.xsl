@@ -286,7 +286,10 @@
 			</xsl:if>
 			<tr>
 				<td class="title1 wrap">Antes de ficar doente tomava alguma bebida alcoólica? Qual tipo de bebida prefere ou preferia?</td>
-				<td class="answer1"><xsl:value-of select="bebida" /></td>
+				<td class="answer1">
+					<xsl:for-each select="bebida"><xsl:value-of select="." />. </xsl:for-each>
+					<!--<xsl:value-of select="bebida" />-->
+				</td>
 			</tr>
 			<xsl:if test="bebida[. != 'nenhuma']">
 				<tr>
@@ -311,7 +314,7 @@
 				</tr>
 			</xsl:if>
 			<tr>
-				<td class="title2">Cage positivo:</td>
+				<td class="title2">Cage:</td>
 				<td class="answer2"><xsl:value-of select="cage" /></td>
 			</tr>
 			
@@ -425,8 +428,8 @@
 					<td class="answer1"><xsl:value-of select="qualOutroResultado" /></td>
 				</tr>
 			</xsl:if>
-
 <!-- Fim Perguntas finais de enfermagem -->			
+
 			<tr>
 				<td class="title1">Desfecho da consulta inicial:</td>
 				<td class="answer1"><xsl:value-of select="desfechoConsultaInicial" /></td>
@@ -464,33 +467,33 @@
 					<td class="answer1">#2 - <xsl:value-of select="dia_coleta2" />/<xsl:value-of select="mes_coleta2" />/<xsl:value-of select="ano_coleta2" /> - <xsl:value-of select="coleta2" /></td>
 				</tr>
 				<tr>
-					<td class="title2">Cicatriz da BCG presente?</td>
-					<td class="answer2"><xsl:value-of select="cicatrizBCG" /></td>
+					<td class="title2">Resultado da leitura (milímetros de enduração):</td>
+					<td class="answer2"><xsl:value-of select="resultadoLeitura" /></td>
 				</tr>
 				<tr>
-					<td class="title1">Resultado da leitura (milímetros de enduração):</td>
-					<td class="answer1"><xsl:value-of select="resultadoLeitura" /></td>
+					<td class="title1">Data da aplicação da prova tuberculínica:</td>
+					<td class="answer1"><xsl:value-of select="dia_aplicacao" />/<xsl:value-of select="mes_aplicacao" />/<xsl:value-of select="ano_aplicacao" /></td>
 				</tr>
 				<tr>
-					<td class="title2">Data da aplicação da prova tuberculínica:</td>
-					<td class="answer2"><xsl:value-of select="dia_aplicacao" />/<xsl:value-of select="mes_aplicacao" />/<xsl:value-of select="ano_aplicacao" /></td>
+					<td class="title2">Data da leitura:</td>
+					<td class="answer2"><xsl:value-of select="dia_leitura" />/<xsl:value-of select="mes_leitura" />/<xsl:value-of select="ano_leitura" /></td>
 				</tr>
 				<tr>
-					<td class="title1">Data da leitura:</td>
-					<td class="answer1"><xsl:value-of select="dia_leitura" />/<xsl:value-of select="mes_leitura" />/<xsl:value-of select="ano_leitura" /></td>
-				</tr>
-				<tr>
-					<td class="title2">PT primeira dose Leitor:</td>
-					<td class="answer2"><xsl:value-of select="PTprimeiraDose" /></td>
+					<td class="title1">PT primeira dose Leitor:</td>
+					<td class="answer1"><xsl:value-of select="PTprimeiraDose" /></td>
 				</tr>
 			</xsl:if>
 			<tr>
-				<td class="title2">Observações:</td>
-				<td class="answer2"><xsl:value-of select="observacoes" /></td>
+				<td class="title2">Cicatriz da BCG presente?</td>
+				<td class="answer2"><xsl:value-of select="cicatrizBCG" /></td>
 			</tr>
 			<tr>
-				<td class="title1"><xsl:value-of select="concat('Avaliado pelo(a) enfermeiro(a): ', avaliador)" /></td>
-				<td class="answer1">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" />/<xsl:value-of select="ano_inclusao" />
+				<td class="title1">Observações:</td>
+				<td class="answer1"><xsl:value-of select="observacoes" /></td>
+			</tr>
+			<tr>
+				<td class="title2"><xsl:value-of select="concat('Avaliado pelo(a) enfermeiro(a): ', avaliador)" /></td>
+				<td class="answer2">Data da avaliação: <xsl:value-of select="dia_inclusao" />/<xsl:value-of select="mes_inclusao" />/<xsl:value-of select="ano_inclusao" />
 					<xsl:value-of select="concat(' ', hora_inclusao)" />
 				</td>
 			</tr>
@@ -628,6 +631,15 @@
 				<td class="answer1"><xsl:value-of select="quimioprofilaxia" /></td>
 			</tr>
 			<tr>
+				<td class="title1">Usou INH?</td>
+				<td class="answer1"><xsl:value-of select="inhCagePositivo" /></td>
+			</tr>
+			<tr>
+				<td class="title1">Usou RIF?</td>
+				<td class="answer1"><xsl:value-of select="rifCagePositivo" /></td>
+			</tr>
+			<!--
+			<tr>
 				<td class="title1">Se Cage positivo, usou INH?</td>
 				<td class="answer1"><xsl:value-of select="inhCagePositivo" /></td>
 			</tr>
@@ -635,6 +647,7 @@
 				<td class="title1">Se Cage positivo, usou RIF?</td>
 				<td class="answer1"><xsl:value-of select="rifCagePositivo" /></td>
 			</tr>
+			-->
 			<tr>
 				<td class="title1">Data da quimioprofilaxia:</td>
 				<td class="answer1"><xsl:value-of select="mes_quimio" />/<xsl:value-of select="ano_quimio" /></td>

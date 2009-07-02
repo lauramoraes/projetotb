@@ -25,7 +25,18 @@ th
 	font-size: 10pt;
 }
 
+.title3
+{
+	text-align: center;
+	font-weight: bold;
+}
+
 .title4
+{
+	text-align: center;
+}
+
+.label
 {
 	text-align: center;
 }

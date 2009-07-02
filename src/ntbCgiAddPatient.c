@@ -126,7 +126,7 @@ int main (void)
 		printf("<title>Resultado</title>\n");
 		printf("</head>\n");
 		printf("<body>\n");
-    printf("Erro ao verificar o usuário.");
+    printf("Erro ao verificar o usu&aacute;rio.");
 		printf("</body>\n");
 		printf("</html>\n");
 		exit(0);
@@ -301,7 +301,6 @@ int main (void)
 		if (!strcmp(input->name,"form"))
 			input = input->next;
 		
-		
 		/* Validate tag name input against UTF-8 */
 		strUTF = fixCgiStr((xmlChar *)input->name);
 		if (!strUTF)
@@ -319,7 +318,6 @@ int main (void)
 		new_node = xmlNewNode (NULL, strUTF);
 		free(strUTF);//frees input->name
 		
-		
 		/* Validate tag value input against UTF-8 */
 		strUTF = fixCgiStr((xmlChar *)input->value);
 		if (!strUTF)
@@ -336,7 +334,6 @@ int main (void)
 		
 		xmlNodeAddContent (new_node, strUTF);
 		free(strUTF);//frees input->value
-		
 		
 		xmlAddChild (new_form, new_node);
 	}
