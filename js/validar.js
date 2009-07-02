@@ -297,12 +297,27 @@
 			{
 				if(form.elements[indice].type == "checkbox")
 				{
+					// soh valida de o vetor de checkboxes tiver pelo menos 3 elementos!
+					// (para criterios de inclusao, ha apenas 2 checkboxes, sem obrigatoriedade de marcar algum, outros tem 1 checkbox apenas)
 					if((form.elements[indice].name == form.elements[indice + 1].name) && (form.elements[indice].name == form.elements[indice + 2].name))
 					{
-						if((form.elements[indice].checked == false) && (form.elements[indice+1].checked == false) && (form.elements[indice+2].checked == false) && (form.elements[indice].disabled == false))
+						for(contador = 0, checkboxIndice = 0; form.elements[indice].name == form.elements[indice + 1].name; indice ++, contador ++)
+						{
+							if(form.elements[indice].checked == true)
+								checkboxIndice ++;
+						}
+
+						if(form.elements[indice].checked == true)
+						{
+							contador ++
+							checkboxIndice ++;
+						}
+
+						if((contador > 1) && (checkboxIndice < 1) && (form.elements[indice].disabled == false))
 						{
 							estado = false;
 							/***********************/
+	
 							novoNome2 = returnNameCampoTriagem(form.elements[indice].name);
 							if(novoNome2 == novoNome1)
 								novoNome1 = novoNome2;
@@ -313,7 +328,22 @@
 							}
 							/***********************/
 						}
-						indice += 2;
+
+						//if((form.elements[indice].checked == false) && (form.elements[indice+1].checked == false) && (form.elements[indice+2].checked == false) && (form.elements[indice].disabled == false))
+						//{
+						//	estado = false;
+							/***********************/
+						//	novoNome2 = returnNameCampoTriagem(form.elements[indice].name);
+						//	if(novoNome2 == novoNome1)
+						//		novoNome1 = novoNome2;
+						//	else
+						//	{
+						//		texto = texto + novoNome2 + "\n";
+						//		novoNome1 = novoNome2;
+						//	}
+							/***********************/
+						//}
+						//indice += 2;
 					}
 				}
 				else
@@ -498,7 +528,7 @@ function validarCustos(form, data)
 	tabela_consulta_medica[9] = ["rif", "01.2 - RIF:"];
 	tabela_consulta_medica[10] = ["qualEsquema", "01.3 - Qual esquema?"];
 	tabela_consulta_medica[11] = ["quimioprofilaxia", "02 - Quimioprofilaxia:"];
-	//tabela_consulta_medica[12] = ["cagePositivo","03 - Cage positivo: (Verificar no questionario Triagem)"];
+	tabela_consulta_medica[12] = ["cagePositivo","03 - Cage positivo: (Verificar no questionario Triagem)"]; // => este campo foi retirado do formulario
 	tabela_consulta_medica[13] = ["inhCagePositivo", "02.1 - INH:"];
 	tabela_consulta_medica[14] = ["rifCagePositivo", "02.2 - RIF:"];
 	tabela_consulta_medica[15] = ["mes_quimio", "02.3 - Data da Quimioprofilaxia:"];
@@ -526,9 +556,9 @@ function validarCustos(form, data)
 	tabela_consulta_medica[37] = ["fatoresRisco", "19 - Fatores de risco para TBP MDR:"];
 	tabela_consulta_medica[38] = ["comorbidades", "05 - Comorbidades:"];
 	tabela_consulta_medica[39] = ["numeroGeral","Nº Geral (TB Adapt): "];
-	tabela_consulta_medica[40] = ["dia_inclusao","Data de inclusão :"];
-	tabela_consulta_medica[41] = ["mes_inclusao","Data de inclusão :"];
-	tabela_consulta_medica[42] = ["ano_inclusao","Data de inclusão :"];
+	tabela_consulta_medica[40] = ["dia_inclusao","Data da consulta :"];
+	tabela_consulta_medica[41] = ["mes_inclusao","Data da consulta :"];
+	tabela_consulta_medica[42] = ["ano_inclusao","Data da consulta :"];
 	tabela_consulta_medica[43] = ["resultadoBaciloscopia1","13 - #1:"];
 	tabela_consulta_medica[44] = ["casoPositivo1","13.1 - Se positivo (1):"];
 	tabela_consulta_medica[45] = ["resultadoBaciloscopia2","14 - #2:"];
