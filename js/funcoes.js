@@ -499,7 +499,7 @@ function validarAno(campoAno)
 	return true;
 }
 
-function validarQualquerData(campoDia,campoMes,campoAno)
+function validarQualquerData(campoDia, campoMes, campoAno, dataFutura)
 {
 	today = new Date();
 	dia = Number(campoDia.value);
@@ -509,164 +509,55 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 	mes_atual = today.getMonth() + 1;
 	ano_atual = today.getFullYear();
 
-	if((dia == "") && (mes == "") && (ano == ""))
+	if ((dia == "") && (mes == "") && (ano == ""))
 		return (true);
-	
-	switch(mes)
+
+	if (dataFutura === undefined)
+		dataFutura = false;
+
+	dias = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	if ((ano - 1900) % 4 == 0) // Se o ano é bissexto
+		dias[1] = 29;
+
+	if (mes < 1 || mes > 12) // mês inválido
 	{
-		case 1://janeiro
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 2://fevereiro
-			if((retcode=(ano-1900)%4 )== 0) // Se o ano e bissexto
-			{
-				if(dia<1 || dia>29)
-				{
-					alert("Dia inválido:" +"\n" +"Use valores entre 01 e 29, pois este é o mês de Fevereiro");
-					campoDia.value = "";
-					globalvar = campoDia;
-					setTimeout("globalvar.focus()",250);
-					return false;
-				}
-			}
-			else 
-				if(dia<1 || dia>28)//O ano nao e bissexto
-				{
-					alert("Dia inválido:" +"\n" +"Use valores entre 01 e 28, pois este é o mês de Fevereiro");
-					campoDia.value = "";
-					globalvar = campoDia;
-					setTimeout("globalvar.focus()",250);
-					return false;
-				}
-		break;
-		case 3://marco
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 4://abril
-			if(dia<1 || dia>30)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 30");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 5://maio
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 6://junho
-			if(dia<1 || dia>30)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 30");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 7://julho
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 8://agosto
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 9://setembro
-			if(dia<1 || dia>30)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 30");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 10://outubro
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 11://novembro
-			if(dia<1 || dia>30)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 30");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		case 12://dezembro
-			if(dia<1 || dia>31)
-			{
-				alert("Dia inválido:" +"\n" +"Use valores entre 01 e 31");
-				campoDia.value = "";
-				globalvar = campoDia;
-				setTimeout("globalvar.focus()",250);
-				return false;
-			}
-		break;
-		default://mes inválido
-		
-		alert("Mês inválido:" +"\n" +"Use valores entre 01 e 12");
+		alert("Mês inválido:" + "\n" + "Use valores entre 01 e 12");
 		campoMes.value = "";
 		globalvar = campoMes;
-		setTimeout("globalvar.focus()",250);
+		setTimeout("globalvar.focus()", 250);
+		return false;
+	}
+
+	if (dia < 1 || dia > dias[mes - 1])
+	{
+		strAux = "";
+		if (mes == 2) strAux = ", pois este é o mês de Fevereiro";
+		
+		alert("Dia inválido:" +"\n" +"Use valores entre 01 e " + dias[mes - 1] + aux);
+		campoDia.value = "";
+		globalvar = campoDia;
+		setTimeout("globalvar.focus()", 250);
+		return false;
+	}
+
+	if (dataFutura)
+		return true;
+
+	//var data = new Date(dia, mes, ano);
+	//if (data > data_atual)
+	if (((dia > dia_atual) && (mes == mes_atual) && (ano == ano_atual)) || ((mes > mes_atual) && (ano == ano_atual)) || (ano > ano_atual))
+	{
+		alert("Data inválida, a data preenchida não pode ser posterior a data de hoje.");
+		campoDia.value = "";
+		campoMes.value = "";
+		campoAno.value = "";
+		globalvar = campoDia;
+		setTimeout("globalvar.focus()", 250);
 		return false;
 	}
 	
-	if(((dia > dia_atual) && (mes == mes_atual) && (ano == ano_atual)) || ((mes > mes_atual) && (ano == ano_atual)) || (ano > ano_atual))
-	{ 	
-			alert("Data inválida, a data preenchida não pode ser posterior a data de hoje.");
-			campoDia.value = "";
-			campoMes.value = "";
-			campoAno.value = "";
-			globalvar = campoDia;
-			setTimeout("globalvar.focus()",250);
-			return false;
-	}
-	
 	return true;
+
 }
 
 /*
@@ -675,43 +566,51 @@ function validarQualquerData(campoDia,campoMes,campoAno)
   Se eh posterio a data atual...
   Se eh anterior a data de nascimento.....
 */
-function validarData(dia,mes,ano)
+function validarData(dia, mes, ano, dataFutura)
 {			
-	if((dia.readOnly == true) || (mes.readOnly == true) || (ano.readOnly == true))
+	if ((dia.readOnly == true) || (mes.readOnly == true) || (ano.readOnly == true))
 		return true;
 
-	if(validarQualquerData(dia,mes,ano))
+	if (dataFutura === undefined)
+		dataFutura = false;
+
+	if (validarQualquerData(dia, mes, ano, dataFutura))
 	{	
-		if((document.check.ano_nascimento.value != "") && (document.check.mes_nascimento.value != "") && (document.check.dia_nascimento.value != ""))
+		if ((document.check.ano_nascimento.value != "") && (document.check.mes_nascimento.value != "") && (document.check.dia_nascimento.value != ""))
 		{
-			if((document.check.ano_nascimento.value != "") && (document.check.mes_nascimento.value == "XX") && (document.check.dia_nascimento.value == "XX"))
+			if ((document.check.ano_nascimento.value != "") && (document.check.mes_nascimento.value == "XX") && (document.check.dia_nascimento.value == "XX"))
 			{
 				if(parseInt(ano.value) < parseInt(document.check.ano_nascimento.value))
 				{
-					alert("Data inválida. A data não pode ser anterior à data de nascimento do paciente.");
+					alert("Data inválida. A data não pode ser anterior a data de nascimento do paciente.");
 					ano.value = "";
 					globalvar = ano;
-					setTimeout("globalvar.focus()",250);
+					setTimeout("globalvar.focus()", 250);
+					
+					return false;
 				}
 			}
 			else
 			{
 				if ((parseInt(ano.value) < parseInt(document.check.ano_nascimento.value)) || ((mes.value < document.check.mes_nascimento.value) && (ano.value == document.check.ano_nascimento.value)) || ((parseInt(dia.value) < parseInt(document.check.dia_nascimento.value)) && (parseInt(mes.value) == parseInt(document.check.mes_nascimento.value)) && (parseInt(ano.value) == parseInt(document.check.ano_nascimento.value))))
 				{
-					alert("Data inválida. A data não pode ser anterior à data de nascimento do paciente.");
+					alert("Data inválida. A data não pode ser anterior a data de nascimento do paciente.");
 					dia.value="";
 					mes.value="";
 					ano.value="";
 					globalvar = dia;
-					setTimeout("globalvar.focus()",250);
+					setTimeout("globalvar.focus()", 250);
 					
 					return false;
 				}
 			}
 		}
+
 		return true;
 	}
+
 	return false;
+
 }
 
 /*
