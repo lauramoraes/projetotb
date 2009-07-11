@@ -29,14 +29,6 @@ gcc -Wall -o calculoRedesNeurais.cgi calculoRedesNeurais.c nnet.c nnet2.c geraGr
 
 #define XML_FILE_PATH "xml/pacientesGuadalupe.xml"
 
-typedef struct chain2
-{
-	char attribute[128+1];
-	char value[128+1];
-	double entry;
-	struct chain2 *next;
-} chainType_2;
-
 void usualFreeMemory (xmlDocPtr);
 void usualFreeMemory (xmlDocPtr doc)
 {
@@ -320,6 +312,10 @@ int main (void)
 	}
 //	printf("- %i - %f -\n",grupo,raioOriginal);
 
+	aux_2 = first_2;
+	geraGrafico(grupo, raioOriginal, response, pid, aux_2);
+
+
 	/****************************************************** 
 	 *               Liberando a Memória                  *
 	 ******************************************************/
@@ -340,8 +336,6 @@ int main (void)
 		aux_2 = aux_2->next;
 		free(first_2);
 	}
-
-	geraGrafico(grupo, raioOriginal, response, pid);
 
 
 	cgi_end();

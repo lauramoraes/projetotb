@@ -17,6 +17,14 @@
 		double entry;
 		struct chain *next;
 	} chainType;
+	
+	typedef struct chain2
+{
+	char attribute[128+1];
+	char value[128+1];
+	double entry;
+	struct chain2 *next;
+} chainType_2;
 
 typedef enum{false,true} boolean;
 

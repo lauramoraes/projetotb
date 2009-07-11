@@ -1,1 +1,1 @@
-void geraGrafico(int, float, float, char*);
+void geraGrafico(int, float, float, char*, chainType_2 *);

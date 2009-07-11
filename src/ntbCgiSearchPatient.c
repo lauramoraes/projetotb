@@ -169,7 +169,7 @@ if (tmpnam(resultado) != NULL)
 	fprintf(xsl2,"			<td class=\"answer center\"><a href=\"viewPatient.cgi?pid={numeroGeral}\"><img alt=\"Ver\" src=\"images/ver.gif\" style=\"border: 0px\" /></a></td>\n");
 	fprintf(xsl2,"			<td class=\"answer center\"><a href=\"removePatient.cgi?numeroGeral={numeroGeral}\" onclick=\"return confirm('Deseja remover o paciente?');\"><img alt=\"Remover\" src=\"images/remove.gif\" style=\"border: 0px\" /></a></td>\n");
 	fprintf(xsl2,"			<td class=\"answer center\"><a href=\"\" onclick=\"window.open ('formsStatus.cgi?uid=%s&amp;pid={numeroGeral}','formularios','toolbar=no, width=300, height=280,resizable=yes'); return false;\"><img src=\"images/forms.gif\" style=\"border: 0px\" /></a></td>\n",username);
-	fprintf(xsl2,"			<td class=\"answer center\"><a href=\"\" onclick=\"window.open ('calculoRedesNeurais.cgi?pid={numeroGeral}','Resultado','toolbar=no, width=800, height=700,resizable=yes'); return false;\"><img alt=\"Grafico\" src=\"images/grafico.png\" style=\"border: 0px\" height=\"18\" width=\"20\" /></a></td>\n");
+	fprintf(xsl2,"			<td class=\"answer center\"><a href=\"calculoRedesNeurais.cgi?pid={numeroGeral}\" target=\"blank\" ><img alt=\"Grafico\" src=\"images/grafico.png\" style=\"border: 0px\" height=\"18\" width=\"20\" /></a></td>\n");
 	fprintf(xsl2,"</tr></xsl:template>\n");
 	fprintf(xsl2,"\n");
 	fprintf(xsl2,"</xsl:stylesheet>\n");

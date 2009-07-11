@@ -13,7 +13,7 @@
 #include "tiposModif.h"
 #include "patientFunctionsModif.h"
 
-void geraGrafico(int opcaoCor, float opcaoY, float response, char * pid)
+void geraGrafico(int opcaoCor, float opcaoY, float response, char * pid, chainType_2 * info)
 {
 	/* Declaracao de Variaveis */
 	FILE *arqGrupo, *arqTemp;
@@ -89,6 +89,14 @@ void geraGrafico(int opcaoCor, float opcaoY, float response, char * pid)
 	printf("</head>\n");
 	printf("<body>\n");
 	printf("<p><div id=\"divNome\"><h2><u>N&uacute;mero geral: %s</u></h2></div></p>", pid);
+	printf("<div id=\"divSintomas\">\n");
+	printf("<strong><u>DADOS DO PACIENTE:</u></strong><br /><br />\n");
+	while(info)
+	{
+		printf("<p><b>%s</b>: %s</p>", info->attribute, info->value);
+		info = info->next;
+	}
+	printf("</div>\n");
 	/*
 	printf("<div id=\"divNome\"><h1><u>%s</u></h1></div>", auxPaciente.nome);
 	printf("<div id=\"divSintomas\">\n");
