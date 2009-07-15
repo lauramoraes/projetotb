@@ -89,35 +89,47 @@ void geraGrafico(int opcaoCor, float opcaoY, float response, char * pid, chainTy
 	printf("</head>\n");
 	printf("<body>\n");
 	printf("<p><div id=\"divNome\"><h2><u>N&uacute;mero geral: %s</u></h2></div></p>", pid);
-	printf("<div id=\"divSintomas\">\n");
+	/*printf("<div id=\"divSintomas\">\n");
 	printf("<strong><u>DADOS DO PACIENTE:</u></strong><br /><br />\n");
 	while(info)
 	{
 		printf("<p><b>%s</b>: %s</p>", info->attribute, info->value);
 		info = info->next;
 	}
-	printf("</div>\n");
-	/*
-	printf("<div id=\"divNome\"><h1><u>%s</u></h1></div>", auxPaciente.nome);
+	printf("</div>\n");*/
+	
+	//printf("<div id=\"divNome\"><h1><u>%s</u></h1></div>", auxPaciente.nome);
 	printf("<div id=\"divSintomas\">\n");
 	printf("<strong><u>DADOS DO PACIENTE</u></strong><br /><br />\n");
-	printf("<b>Data de nascimento:</b> %s<br />\n", auxPaciente.data_nascimento);
-	printf("<b>Idade:</b> %s<br />\n", auxPaciente.idade);
-	printf("<b>Sexo:</b> %s<br />\n", auxPaciente.sexo);
-	printf("<img src=\"../imagesRedeNeural/bolaAlto.png\" /><img src=\"../imagesRedeNeural/bolaMedio.png\" /><img src=\"../imagesRedeNeural/bolaBaixo.png\" />&nbsp;<b>Tosse:</b> %s<br />\n", auxPaciente.tosse);
-	printf("<b>Hemopt&oacute;ico:</b> %s<br />\n", auxPaciente.hemoptoico);
-	printf("<img src=\"../sistema/imagesRedeNeural/bolaAlto.png\" /><img src=\"../sistema/imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Sudorese:</b> %s<br />\n", auxPaciente.sudorese);
-	printf("<img src=\"../sistema/imagesRedeNeural/bolaAlto.png\" /><img src=\"../sistema/imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Febre:</b> %s<br />\n", auxPaciente.febre);
-	printf("<img src=\"../sistema/imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Emagrecimento:</b> %s<br />\n", auxPaciente.emagrecimento);
-	printf("<b>Dispn&eacute;ia:</b> %s<br />\n", auxPaciente.dispneia);
-	printf("<img src=\"../sistema/imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Anorexia:</b> %s<br />\n", auxPaciente.anorexia);
-	printf("<b>Fuma Atualmente:</b> %s<br />\n", auxPaciente.fuma_atualmente);
-	printf("<b>TB Extrapulmonar: </b>%s<br />\n", auxPaciente.tb_extrapulmonar);
-	printf("<b>Interna&ccedil;&atilde;o Hospitalar:</b> %s<br />\n", auxPaciente.internacao_hospitalar);
-	printf("<b>SIDA:</b> %s<br />\n", auxPaciente.sida);
-	printf("<b>Grupo de Risco:</b> %s<br />\n", auxPaciente.grupo_de_risco);
+	//printf("<b>Data de nascimento:</b> %s<br />\n", auxPaciente.data_nascimento);
+	printf("<b>Idade:</b> %s<br />\n", info->value);
+	info = info->next;
+	//printf("<b>Sexo:</b> %s<br />\n", auxPaciente.sexo);
+	printf("<img src=\"./imagesRedeNeural/bolaAlto.png\" /><img src=\"./imagesRedeNeural/bolaMedio.png\" /><img src=\"./imagesRedeNeural/bolaBaixo.png\" />&nbsp;<b>Tosse:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<b>Hemopt&oacute;ico:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<img src=\"./imagesRedeNeural/bolaAlto.png\" /><img src=\"./imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Sudorese:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<img src=\"./imagesRedeNeural/bolaAlto.png\" /><img src=\"./imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Febre:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<b>Dispn&eacute;ia:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<b>Interna&ccedil;&atilde;o Hospitalar:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<img src=\"./imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Emagrecimento:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<img src=\"./imagesRedeNeural/bolaMedio.png\" />&nbsp;<b>Anorexia:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<b>Fuma Atualmente:</b> %s<br />\n", info->value);
+	info = info->next;
+	printf("<b>TB Extrapulmonar: </b>%s<br />\n", info->value);
+	info = info->next;
+	printf("<b>SIDA:</b> %s<br />\n", info->value);
+	//info = info->next;
+	//printf("<b>Grupo de Risco:</b> %s<br />\n", auxPaciente.grupo_de_risco);
 	printf("</div>\n");
-	*/
+
 	if(opcaoCor == 3)
 		printf("<p><div id=\"foraDeGrupo\"> O Paciente n&atilde;o pertence a nenhum dos grupos de risco</div></p>\n");
 	printf("<div id=\"divResultado\"><strong>%f</strong></div>\n", response);
