@@ -99,9 +99,9 @@
 	tabFields[97] = ["", "54.2 - Data de Coleta dos DOIS Esp&eacute;cimes Respirat&oacute;rios:"];	
 	tabFields[98] = ["coleta1", "#1"];	
 	tabFields[99] = ["coleta2", "#2"];	
-	tabFields[100] = ["cicatrizBCG", "54.3 - Cicatriz de BCG"];	
-	tabFields[101] = ["resultadoLeitura", "54.4 - Resultado da leitura"];	
-	tabFields[102] = ["data_aplicacao", "54.5 - Data de aplicação da prova tuberculínica"];	
-	tabFields[103] = ["data_leitura", "54.6 - Data da Leitura"];	
-	tabFields[104] = ["PTprimeiraDose", "54.7 - PT 1ª dose leitor"];	
-	tabFields[105] = ["observacoes", "55 - Observações"];
+	tabFields[100] = ["cicatrizBCG", "55 - Cicatriz de BCG"];	
+	tabFields[101] = ["resultadoLeitura", "54.3 - Resultado da leitura"];	
+	tabFields[102] = ["data_aplicacao", "54.4 - Data de aplicação da prova tuberculínica"];	
+	tabFields[103] = ["data_leitura", "54.5 - Data da Leitura"];	
+	tabFields[104] = ["PTprimeiraDose", "54.6 - PT 1ª dose leitor"];	
+	tabFields[105] = ["observacoes", "56 - Observações"];

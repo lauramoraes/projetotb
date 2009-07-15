@@ -543,7 +543,8 @@ function validarQualquerData(campoDia, campoMes, campoAno, dataFutura)
 	if (dataFutura)
 		return true;
 
-	//var data = new Date(dia, mes, ano);
+	//var data = new Date();
+	//data.setFullYear(ano, mes - 1, dia);
 	//if (data > data_atual)
 	if (((dia > dia_atual) && (mes == mes_atual) && (ano == ano_atual)) || ((mes > mes_atual) && (ano == ano_atual)) || (ano > ano_atual))
 	{
