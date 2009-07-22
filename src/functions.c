@@ -28,6 +28,11 @@ void showMenu (char *option, char *username)
 	else
 	printf("			<td class=\"fl\"><a href=\"busca.cgi?uid=%s\" target=\"_parent\">Buscar/Editar/Remover</a></td>",username);	
 
+	if(strcmp(option,"analise") == 0)
+	printf("			<td class=\"fl\"><span class=\"active\">Analise</span></td>");
+	else
+	printf("			<td class=\"fl\"><a href=\"formAnalise.cgi\" target=\"_parent\">Analise</a></td>",username);	
+
 	if(strcmp(option,"listar") == 0)
 	printf("			<td class=\"fl\"><span class=\"active\">Listar Pacientes</span></td>");
 	else
