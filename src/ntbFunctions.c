@@ -11,20 +11,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include <string.h>
+#include <libxml/parser.h>
+#include <libxml/tree.h>
+#include <libxml/xmlstring.h>
 #include <libxml/encoding.h>
-#include "cgi.h"
-#include "ntbError.h"
-#include "ntbTypes.h"
-#include "ntbFunctions.h"
 
 /* Headers for stat(), fork(), wait() and execl() */
 #include <sys/types.h>
+#include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include "cgi.h"
+#include "ntbError.h"
+#include "ntbTypes.h"
+#include "ntbFunctions.h"
 /*
 Gets current-user's public html path
 */
@@ -549,4 +554,132 @@ void autoBackup(void)
     }
 }
 
+/*
+ * FUNCAO QUE BUSCA UM PACIENTE PELO NUMERO GERAL USANDO A LIBXML2
+ * RETORNA O NO DO PACIENTE SE O ENCOTRAR
+ * RETORNA NULL CASO CONTRARIO
+ */
+xmlNodePtr pegaPacientePorNumeroGeral(xmlDocPtr doc, char *numeroGeral)
+{
+	if(doc == NULL)
+		return NULL;
 
+	if(numeroGeral == NULL)
+		return NULL;
+
+	xmlNodePtr noBuscado, aux;
+
+	aux = xmlDocGetRootElement(doc);/* AUX RECEBE NO ROOT DA ARVORE */
+
+	aux = aux->children;/* AUX RECEBE O NO DO PACIENTE */
+	while(aux != NULL)
+	{
+		noBuscado = aux;
+
+		/* BUSCA PELA TAG "TRIAGEM" */
+		noBuscado = noBuscado->children;/* triagem? */
+		while(((xmlStrEqual(noBuscado->name, BAD_CAST "triagem")) != 1) && (noBuscado != NULL))
+			noBuscado = noBuscado->next;
+
+		if(noBuscado == NULL)/* TAG "TRIAGEM" NAO ENCONTRADA */
+			return NULL;
+
+		/* BUSCA PELA TAG "NUMERO GERAL" */
+		noBuscado = noBuscado->children;/* numeroGeral? */
+		while(((xmlStrEqual(noBuscado->name, BAD_CAST "numeroGeral")) != 1) && (noBuscado != NULL))
+			noBuscado = noBuscado->next;
+
+		if(noBuscado == NULL)/* TAG "NUMERO GERAL" NAO ENCONTRADA */
+			return NULL;
+
+		if((xmlStrEqual(noBuscado->children->content, BAD_CAST numeroGeral)) == 1)
+			return noBuscado->parent->parent;/* RETORNA O NO DO PACIENTE */
+
+		aux =  aux->next;
+	}
+
+	return NULL;
+}
+
+/*
+ * FUNCAO QUE RETORNA O NO DO FORMULARIO CUJO NOME CORRESPONDE A CONST CHAR
+ * RETORNA NULL CASO NAO O ACHE
+ *
+ * OBS: ESTA FUNCAO RECEBE O NO DO PACIENTE QUE EH O MESMO RETORNADO PELA FUNCAO pegaPacientePorNumeroGeral
+ */
+xmlNodePtr pegaFormulario(xmlNodePtr noPai, const char *formulario)
+{
+	if(noPai == NULL)
+		return NULL;
+
+	if(formulario == NULL)
+		return NULL;
+
+	xmlNodePtr noBuscado;
+
+	noBuscado = noPai->children;
+	while(noBuscado != NULL)
+	{
+		if((xmlStrEqual(noBuscado->name, BAD_CAST formulario)) == 1)
+			return noBuscado;
+		
+		noBuscado = noBuscado->next;
+	}
+
+	return NULL;
+}
+
+/*
+ * FUNCAO QUE RETORNA O VALOR DA TAG CUJO O NOME ESTA CONTIDO EM "TAG", E ESTA DENTRO DO FOMULARIO "FORMULARIO"
+ *
+ * noPai - no do paciente o qual quer ser procurado a tag e seu valor
+ ****** obs: a estrutura deste no eh a mesma retornada pela funcao pegaPacientePorNumeroGeral
+ * formulario - nome do fomulario onde quer ser procurado a tag; ex: triagem
+ ****** obs: caso formulario == null sera buscada a tag em todos os formularios do paciente, sendo retornado o valor da primeira tag encontrada
+ * tag - nome da tag cujo valor eh esperado
+ * 
+ */
+char *pegaValorDaTag(xmlNodePtr noPai, const char *formulario, const char *tag)
+{
+	if(noPai == NULL)
+		return NULL;
+
+	if(tag == NULL)
+		return NULL;
+
+	xmlNodePtr noFormulario, aux;
+
+	if(formulario != NULL)
+	{
+		if((noFormulario = pegaFormulario(noPai, formulario)) == NULL)
+			return NULL;
+
+		aux = noFormulario->children;
+		while(aux != NULL)
+		{
+			if((xmlStrEqual(aux->name, BAD_CAST tag)) == 1)
+				return aux->children->content;
+
+			aux = aux->next;
+		}
+	}
+	else
+	{
+		noFormulario = noPai->children;
+		while(noFormulario != NULL)
+		{
+			aux = noFormulario->children;
+			while(aux != NULL)
+			{
+				if((xmlStrEqual(aux->name, BAD_CAST tag)) == 1)
+					return aux->children->content;
+
+				aux = aux->next;
+			}
+
+			noFormulario = noFormulario->next;
+		}
+	}
+
+	return NULL;
+}
