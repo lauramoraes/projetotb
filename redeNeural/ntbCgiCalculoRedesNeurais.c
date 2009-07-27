@@ -153,7 +153,7 @@ chainType_2 *converterParaCalculoRedesNeurais (char *pid)
 	
 	while((old_patient != NULL) && (indice < 12))
 	{
-		if((xmlStrEqual(old_patient->name, BAD_CAST "idade")) || (xmlStrEqual(old_patient->name, BAD_CAST "tosse")) || (xmlStrEqual(old_patient->name, BAD_CAST "hemoptoico")) || (xmlStrEqual(old_patient->name, BAD_CAST "sudorese")) || (xmlStrEqual(old_patient->name, BAD_CAST "febre")) || (xmlStrEqual(old_patient->name, BAD_CAST "emagrecimento")) || (xmlStrEqual(old_patient->name, BAD_CAST "dispneia")) || (xmlStrEqual(old_patient->name, BAD_CAST "anorexia")) || (xmlStrEqual(old_patient->name, BAD_CAST "fuma_atualmente")) || (xmlStrEqual(old_patient->name, BAD_CAST "tb_extrapulmonar")) || (xmlStrEqual(old_patient->name, BAD_CAST "internado")) || (xmlStrEqual(old_patient->name, BAD_CAST "sida")))
+		if((xmlStrEqual(old_patient->name, BAD_CAST "idade")) || (xmlStrEqual(old_patient->name, BAD_CAST "tosse")) || (xmlStrEqual(old_patient->name, BAD_CAST "hemoptoico")) || (xmlStrEqual(old_patient->name, BAD_CAST "sudorese")) || (xmlStrEqual(old_patient->name, BAD_CAST "febre")) || (xmlStrEqual(old_patient->name, BAD_CAST "emagrecimento")) || (xmlStrEqual(old_patient->name, BAD_CAST "dispneia")) || (xmlStrEqual(old_patient->name, BAD_CAST "anorexia")) || (xmlStrEqual(old_patient->name, BAD_CAST "fuma_atualmente")) || (xmlStrEqual(old_patient->name, BAD_CAST "tb_extrapulmonar")) || (xmlStrEqual(old_patient->name, BAD_CAST "internado")) || (xmlStrEqual(old_patient->name, BAD_CAST "sida")) || (xmlStrEqual(old_patient->name, BAD_CAST "nomeCompleto")))
 		{
 			if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 				return NULL;
@@ -266,6 +266,27 @@ int main (void)
 		cgi_end();
 		exit(0);
 	}
+	
+	/********************************************************
+	*           Recuperando o nome do paciente              *
+	*********************************************************/
+/*	aux_2 = first_2;
+	if (!strcmp("nomeCompleto", first_2->attribute))
+	{
+			strcpy(nome,first_2->value);
+			first_2 = first_2->next;
+	}
+	else
+		while (aux_2->next)
+		{
+			if (!strcmp("nomeCompleto", aux_2->next->attribute))
+			{
+				strcpy(nome,aux_2->next->value);
+				aux_2->next = aux_2->next->next;
+			}
+			aux_2 = aux_2->next;	
+		}
+	*/
 
 	/******************************************************** 
 	 * Copiando os dados para o tipo que a rede neural pede *
@@ -322,7 +343,7 @@ int main (void)
 	aux = first;
 	while(aux != NULL)
 	{
-//		printf("%s - %s - %f\n",aux->attribute,aux->value,aux->entry);
+		//printf("%s - %s - %f\n",aux->attribute,aux->value,aux->entry);
 		first = aux;
 		aux = aux->next;
 		free(first);
@@ -331,7 +352,7 @@ int main (void)
 	aux_2 = first_2;
 	while(aux_2 != NULL)
 	{
-//		printf("%s - %s - %f\n",aux_2->attribute,aux_2->value,aux_2->entry);
+		//printf("%s - %s - %f\n",aux_2->attribute,aux_2->value,aux_2->entry);
 		first_2 = aux_2;
 		aux_2 = aux_2->next;
 		free(first_2);

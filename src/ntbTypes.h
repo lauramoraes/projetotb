@@ -33,6 +33,11 @@ typedef struct
 	char text[TEXT_FILE_LINE_MAX];
 } parsedvars;
 
+typedef struct le
+{
+	char campo[128+1];
+	struct le *proximo;
+} listaAnalise;
 
 #endif
 
