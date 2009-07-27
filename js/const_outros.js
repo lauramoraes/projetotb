@@ -105,3 +105,4 @@
 	tabFields[103] = ["data_leitura", "38.5 - Data da Leitura"];
 	tabFields[104] = ["PTprimeiraDose", "38.6 - PT 1ª dose leitor"];
 	tabFields[105] = ["observacoes", "40 - Observa&ccedil;&otilde;es"];
+	tabFields[106] = ["histMotivo", "41 - Motivo da altera&ccedil;&atilde;o"];
