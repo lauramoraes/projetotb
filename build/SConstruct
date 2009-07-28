@@ -52,7 +52,7 @@ for cgi, srcs in cgilist.cgiMap.iteritems():
 #Compilando a CGI que calcula o resultado da rede neural
 cgiListNeural = []
 for cgi, srcs in cgilistNeural.cgiMap.iteritems():
-  srcsList = ['../redeNeural/%s' % s for s in srcs];
+  srcsList = ['../src/%s' % s for s in srcs];
   binName = env.Program(target = cgi + '.cgi', source = srcsList, CCFLAGS = cxx_flags, 
                         LIBS = used_libs + [functions], LIBPATH = lib_path);
   cgiListNeural.append(binName)
