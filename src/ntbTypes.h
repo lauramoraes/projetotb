@@ -20,7 +20,11 @@
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 typedef enum {no_answer, dont_match, match} responseType;
-typedef enum {false, true} boolean;
+
+#ifndef boolean
+#define boolean enum{false, true}
+#endif
+//typedef enum {false, true} boolean;
 
 /*
 	Use of dynamic memory allocation was postponed
