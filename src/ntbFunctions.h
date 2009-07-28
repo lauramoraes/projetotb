@@ -53,23 +53,14 @@ xmlNodePtr pegaPacientePorNumeroGeral(xmlDocPtr, char *);
 /*
  * FUNCAO QUE RETORNA O NO DO FORMULARIO CUJO NOME CORRESPONDE A CONST CHAR
  * RETORNA NULL CASO NAO O ACHE
- *
- * OBS: ESTA FUNCAO RECEBE O NO DO PACIENTE QUE EH O MESMO RETORNADO PELA FUNCAO pegaPacientePorNumeroGeral
  */
-xmlNodePtr pegaFormulario(xmlNodePtr, const char *);
+xmlNodePtr pegarFilhoPorNome(xmlNodePtr , const char *);
 
 /*
- * FUNCAO QUE RETORNA O VALOR DA TAG CUJO O NOME ESTA CONTIDO EM "TAG", E ESTA DENTRO DO FOMULARIO "FORMULARIO"
- * RETORNA NULL CASO NAO ACHE A TAG OU CASO O VALOR DA TAG SEJA NULL
- *
- * noPai - no do paciente o qual quer ser procurado a tag e seu valor
- ****** obs: a estrutura deste no eh a mesma retornada pela funcao pegaPacientePorNumeroGeral
- * formulario - nome do fomulario onde quer ser procurado a tag; ex: triagem
- ****** obs: caso formulario == null sera buscada a tag em todos os formularios do paciente, sendo retornado o valor da primeira tag encontrada
- * tag - nome da tag cujo valor eh esperado
- * 
+ * FUNCAO QUE RETORNA O VALOR DA TAG CUJO O NOME ESTA CONTIDO EM "TAG"
+ * RETORNA NULL CASO NAO ENCONTRE A TAG
  */
-char *pegaValorDaTag(xmlNodePtr noPai, const char *formulario, const char *tag);
+char *pegaValorDaTag(xmlNodePtr, const char *);
 
 #endif
 
