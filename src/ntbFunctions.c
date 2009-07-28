@@ -604,25 +604,30 @@ xmlNodePtr pegaPacientePorNumeroGeral(xmlDocPtr doc, char *numeroGeral)
 /*
  * FUNCAO QUE RETORNA O NO DO FORMULARIO CUJO NOME CORRESPONDE A CONST CHAR
  * RETORNA NULL CASO NAO O ACHE
- *
- * OBS: ESTA FUNCAO RECEBE O NO DO PACIENTE QUE EH O MESMO RETORNADO PELA FUNCAO pegaPacientePorNumeroGeral
  */
-xmlNodePtr pegaFormulario(xmlNodePtr noPai, const char *formulario)
+xmlNodePtr pegarFilhoPorNome(xmlNodePtr noPai, const char *nome)
 {
 	if(noPai == NULL)
 		return NULL;
 
-	if(formulario == NULL)
+	if(nome == NULL)
 		return NULL;
 
-	xmlNodePtr noBuscado;
+	xmlNodePtr noBuscado, aux;
+
+	if((xmlStrEqual(noPai->name, BAD_CAST nome)) == 1)
+		return noPai;
 
 	noBuscado = noPai->children;
 	while(noBuscado != NULL)
 	{
-		if((xmlStrEqual(noBuscado->name, BAD_CAST formulario)) == 1)
+		if((xmlStrEqual(noBuscado->name, BAD_CAST nome)) == 1)
 			return noBuscado;
-		
+
+		for(aux = noBuscado->children; aux != NULL; aux = aux->next)
+			if((xmlStrEqual(aux->name, BAD_CAST nome)) == 1)
+				return aux;
+
 		noBuscado = noBuscado->next;
 	}
 
@@ -630,16 +635,10 @@ xmlNodePtr pegaFormulario(xmlNodePtr noPai, const char *formulario)
 }
 
 /*
- * FUNCAO QUE RETORNA O VALOR DA TAG CUJO O NOME ESTA CONTIDO EM "TAG", E ESTA DENTRO DO FOMULARIO "FORMULARIO"
- *
- * noPai - no do paciente o qual quer ser procurado a tag e seu valor
- ****** obs: a estrutura deste no eh a mesma retornada pela funcao pegaPacientePorNumeroGeral
- * formulario - nome do fomulario onde quer ser procurado a tag; ex: triagem
- ****** obs: caso formulario == null sera buscada a tag em todos os formularios do paciente, sendo retornado o valor da primeira tag encontrada
- * tag - nome da tag cujo valor eh esperado
- * 
+ * FUNCAO QUE RETORNA O VALOR DA TAG CUJO O NOME ESTA CONTIDO EM "TAG"
+ * RETORNA NULL CASO NAO ENCONTRE A TAG
  */
-char *pegaValorDaTag(xmlNodePtr noPai, const char *formulario, const char *tag)
+char *pegaValorDaTag(xmlNodePtr noPai, const char *tag)
 {
 	if(noPai == NULL)
 		return NULL;
@@ -647,39 +646,13 @@ char *pegaValorDaTag(xmlNodePtr noPai, const char *formulario, const char *tag)
 	if(tag == NULL)
 		return NULL;
 
-	xmlNodePtr noFormulario, aux;
+	xmlNodePtr tagBuscada;
 
-	if(formulario != NULL)
-	{
-		if((noFormulario = pegaFormulario(noPai, formulario)) == NULL)
-			return NULL;
+	if((tagBuscada = pegarFilhoPorNome(noPai, tag)) == NULL)
+		return NULL;
 
-		aux = noFormulario->children;
-		while(aux != NULL)
-		{
-			if((xmlStrEqual(aux->name, BAD_CAST tag)) == 1)
-				return aux->children->content;
+	if(tagBuscada->children == NULL)
+		return NULL;
 
-			aux = aux->next;
-		}
-	}
-	else
-	{
-		noFormulario = noPai->children;
-		while(noFormulario != NULL)
-		{
-			aux = noFormulario->children;
-			while(aux != NULL)
-			{
-				if((xmlStrEqual(aux->name, BAD_CAST tag)) == 1)
-					return aux->children->content;
-
-				aux = aux->next;
-			}
-
-			noFormulario = noFormulario->next;
-		}
-	}
-
-	return NULL;
+	return tagBuscada->children->content;
 }
