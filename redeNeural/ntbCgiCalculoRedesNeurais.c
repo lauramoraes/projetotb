@@ -26,6 +26,7 @@ gcc -Wall -o calculoRedesNeurais.cgi calculoRedesNeurais.c nnet.c nnet2.c geraGr
 #include "nnet.h"
 #include "nnet2.h"
 #include "geraGraficoDeGrupo.h"
+#include "ntbFunctions.h"
 
 #define XML_FILE_PATH "xml/pacientesGuadalupe.xml"
 
@@ -47,34 +48,72 @@ void printError (char *msg)
 }
 
 /*
+ * FUNCAO RESPONSAVEL POR CRIAR/ADICIONAR UM TERMO A UMA LISTA ENCADEADA DO TIPO "chainType_2"
+ */
+void adicionarNaListaEncadeada(chainType_2 *, xmlNodePtr, char *, char *);
+void adicionarNaListaEncadeada(chainType_2 *first, xmlNodePtr noPai, char *tag, char *nameAtribute)
+{
+	if(tag == NULL)
+		return;
+
+	if(nameAtribute == NULL)
+		return;
+
+	chainType_2 aux, new;
+
+	if((new = malloc(sizeof(chainType_2))) == NULL)
+		return;
+
+	if(first == NULL)
+	{
+		first = new;
+	}
+	else
+	{
+		for(aux = first; aux->next != NULL; aux = aux->next);
+
+		aux->next = new;
+	}
+
+	strcpy(new->attribute, nameAtribute);
+	strcpy(new->value, pegaValorDaTag(noPai, tag));
+
+	if(!(strcmp(new->value,"sim")))
+		new->entry =  1.0;
+	if(!(strcmp(new->value,"nao")))
+		new->entry = -1.0;
+	if(!(strcmp(new->value,"ignorado")))
+		new->entry =  0.0;
+
+	new->next = NULL;
+}
+
+/*
  * Esta função procura no xml o paciente com o numero geral desejado
  * Ela pega os campos necessários para o calculo na redes nerais, que são:
  * idade; tosse; hemoptoico; sudorese; febre; emagrecimento; dispneia; anorexia; fuma_atualmente; tb_extrapulmonar; internacao_hospitalar; sida;
  * E converte os falores destes campos para -1.0;0.0;1.0 de acordo com seu valor origianl
  * É devovido um ponterio para o primeiro elemento de uma lista encadeada da estrutura chainType
  */
-chainType_2 *converterParaCalculoRedesNeurais (char *);
-chainType_2 *converterParaCalculoRedesNeurais (char *pid)
+chainType_2 *converterParaCalculoRedesNeurais(char *);
+chainType_2 *converterParaCalculoRedesNeurais(char *pid)
 {
-	boolean found_patient;
 	FILE *document;
-	chainType_2 *aux, *other, *first;
-	short unsigned indice;
+	chainType_2 *first, *aux, *new;
 
 	LIBXML_TEST_VERSION
 
-	/* libxml2 declarations */
 	xmlDocPtr doc;
-	xmlNodePtr root_element, cur_node, old_patient;
+	xmlNodePtr noPaciente, noTriagem;
 
 	if(!(document = fopen(XML_FILE_PATH, "r+")))
 		return NULL;
 
 	if(flock(fileno(document), LOCK_EX))
 	{
-       	fclose(document);
-        return NULL;
-    }
+		fclose(document);
+		return NULL;
+	}
 
 	if(!(doc = xmlReadFd(fileno(document), XML_FILE_PATH, NULL, XML_PARSE_NOBLANKS)))
 	{
@@ -83,154 +122,106 @@ chainType_2 *converterParaCalculoRedesNeurais (char *pid)
 		fclose(document);
 		return NULL;
 	}
-	
-	root_element = xmlDocGetRootElement(doc);
 
-/******************************************************************************
- *           Procurando paciente pelo numero geral                            *
- ******************************************************************************/
-
-	cur_node = root_element->children;	/* Get the node <paciente> if file isn't empty */
-	if (!cur_node) //test!!!! printf!! pode-se tb na remocao exigir a remocao do arquivo se o paciente excluido for o unico do arquivo
-		found_patient = false;
-	
-	else
+	if((noPaciente = pegaPacientePorNumeroGeral(doc, pid)) == NULL)
 	{
-		/* looping through patients looking for the right patient */
-		
-		for (found_patient = false; ((!found_patient) && (cur_node)); cur_node = cur_node->next)
-		{
-			cur_node = cur_node->children; /* <triagem> */
-			cur_node = cur_node->children; /* <numeroGeral> ? */
-			
-			while ((!xmlStrEqual(cur_node->name, BAD_CAST "numeroGeral")) && (cur_node))
-				cur_node = cur_node->next;
-			
-			if (xmlStrEqual(cur_node->name, BAD_CAST "numeroGeral"))
-			{
-				if (xmlStrEqual(cur_node->children->content, BAD_CAST pid))
-				{
-					found_patient = true;
-					old_patient = cur_node->parent; /*old_paciente recebe o noh <triagem> do paciente que possui o numeroGeral procurado */
-				}
-				else
-				{
-					cur_node = cur_node->parent; /* <triagem> */
-					cur_node = cur_node->parent; /* <paciente> */
-				}
-			}
-			else
-			{
-				usualFreeMemory(doc);
-				flock(fileno(document), LOCK_EX);
-				fclose(document);
-				return NULL;
-			}
-		}
-	}
-
-/******************************************************************************
- *            Checando se paiente foi encontrado		*
- *            Se true continuo      					*
- ******************************************************************************/
-
-	if(!found_patient)
-	{
-		usualFreeMemory(doc);
+		usualFreeMemory(NULL);
 		flock(fileno(document), LOCK_EX);
 		fclose(document);
 		return NULL;
 	}
-	
-	//old_patient esta em triagem do paciente com o numero geral
+
+	if((noTriagem = pegarFilhoPorNome(noPaciete, "triagem")) == NULL)
+	{
+		usualFreeMemory(NULL);
+		flock(fileno(document), LOCK_EX);
+		fclose(document);
+		return NULL;
+	}
+
 /******************************************************************************
  *           Criando variavel que será mandada para a redes neural            *
  ******************************************************************************/
-	root_element = old_patient;
-	old_patient = old_patient->children;//nivel das informacoes de triagem
-	
+
 	first = NULL;
-	
-	while((old_patient != NULL) && (indice < 12))
-	{
-		if((xmlStrEqual(old_patient->name, BAD_CAST "idade")) || (xmlStrEqual(old_patient->name, BAD_CAST "tosse")) || (xmlStrEqual(old_patient->name, BAD_CAST "hemoptoico")) || (xmlStrEqual(old_patient->name, BAD_CAST "sudorese")) || (xmlStrEqual(old_patient->name, BAD_CAST "febre")) || (xmlStrEqual(old_patient->name, BAD_CAST "emagrecimento")) || (xmlStrEqual(old_patient->name, BAD_CAST "dispneia")) || (xmlStrEqual(old_patient->name, BAD_CAST "anorexia")) || (xmlStrEqual(old_patient->name, BAD_CAST "fuma_atualmente")) || (xmlStrEqual(old_patient->name, BAD_CAST "tb_extrapulmonar")) || (xmlStrEqual(old_patient->name, BAD_CAST "internado")) || (xmlStrEqual(old_patient->name, BAD_CAST "sida")) || (xmlStrEqual(old_patient->name, BAD_CAST "nomeCompleto")))
-		{
-			if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
-				return NULL;
-			
-			if(!(strcmp((char *)old_patient->name,"internado")))
-				strcpy(other->attribute,"internacao_hospitalar");
-			else
-				strcpy(other->attribute, (char *)old_patient->name);
-			
-			strcpy(other->value, (char *)old_patient->children->content);
-			
-			if(!(strcmp(other->value,"sim")))
-				other->entry = 1.0;
-			if(!(strcmp(other->value,"nao")))
-				other->entry = -1.0;
-			if(!(strcmp(other->value,"ignorado")))
-				other->entry = 0.0;
-			
-			other->next = NULL;
-			
-			if(first == NULL)
-				first = other;
-			else
-				aux->next = other;
-			
-			aux = other;
-			indice ++;
-		}
-	
-		old_patient = old_patient->next;
-	}
-	
+
+	adicionarNaListaEncadeada(first, noTriagem, "idade", "idade");
+
+	adicionarNaListaEncadeada(first, noTriagem, "tosse", "tosse");
+
+	adicionarNaListaEncadeada(first, noTriagem, "hemoptoico", "hemoptoico");
+
+	adicionarNaListaEncadeada(first, noTriagem, "sudorese", "sudorese");
+
+	adicionarNaListaEncadeada(first, noTriagem, "febre", "febre");
+
 	/* Esta parte eh temporaria enquanto falta definocoes para a integracao */
-	if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
+	if((new = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 		return NULL;
-	strcpy(other->attribute,"emagrecimento");
-	strcpy(other->value,"ignorado");
-	other->entry = 0.0;
-	other->next = NULL;
-	aux->next = other;
-	aux = other;
-	
-	if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
+
+	for(aux = first; aux->next != NULL; aux = aux->next);
+		aux->next = new;
+
+	strcpy(new->attribute,"emagrecimento");
+	strcpy(new->value,"ignorado");
+	new->entry = 0.0;
+	new->next = NULL;
+	/* ******************************************************************** */
+
+	adicionarNaListaEncadeada(first, noTriagem, "dispneia", "dispneia");
+
+	/* Esta parte eh temporaria enquanto falta definocoes para a integracao */
+	if((new = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 		return NULL;
-	strcpy(other->attribute,"anorexia");
-	strcpy(other->value,"ignorado");
-	other->entry = 0.0;
-	other->next = NULL;
-	aux->next = other;
-	aux = other;
-	
-	if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
+
+	for(aux = first; aux->next != NULL; aux = aux->next);
+		aux->next = new;
+
+	strcpy(new->attribute,"anorexia");
+	strcpy(new->value,"ignorado");
+	new->entry = 0.0;
+	new->next = NULL;
+	/* ******************************************************************** */
+
+	/* Esta parte eh temporaria enquanto falta definocoes para a integracao */
+	if((new = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 		return NULL;
-	strcpy(other->attribute,"fuma_atualmente");
-	strcpy(other->value,"ignorado");
-	other->entry = 0.0;
-	other->next = NULL;
-	aux->next = other;
-	aux = other;
-	
-	if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
+
+	for(aux = first; aux->next != NULL; aux = aux->next);
+		aux->next = new;
+
+	strcpy(new->attribute,"fuma_atualmente");
+	strcpy(new->value,"ignorado");
+	new->entry = 0.0;
+	new->next = NULL;
+	/* ******************************************************************** */
+
+	/* Esta parte eh temporaria enquanto falta definocoes para a integracao */
+	if((new = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 		return NULL;
-	strcpy(other->attribute,"tb_extrapulmonar");
-	strcpy(other->value,"ignorado");
-	other->entry = 0.0;
-	other->next = NULL;
-	aux->next = other;
-	aux = other;
-	
-	if((other = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
+
+	for(aux = first; aux->next != NULL; aux = aux->next);
+		aux->next = new;
+
+	strcpy(new->attribute,"tb_extrapulmonar");
+	strcpy(new->value,"ignorado");
+	new->entry = 0.0;
+	new->next = NULL;
+	/* ******************************************************************** */
+
+	adicionarNaListaEncadeada(first, noTriagem, "internado", "internacao_hospitalar");
+
+	/* Esta parte eh temporaria enquanto falta definocoes para a integracao */
+	if((new = (chainType_2*)malloc(sizeof(chainType_2))) == NULL)
 		return NULL;
-	strcpy(other->attribute,"sida");
-	strcpy(other->value,"ignorado");
-	other->entry = 0.0;
-	other->next = NULL;
-	aux->next = other;
-	aux = other;
+
+	for(aux = first; aux->next != NULL; aux = aux->next);
+		aux->next = new;
+
+	strcpy(new->attribute,"sida");
+	strcpy(new->value,"ignorado");
+	new->entry = 0.0;
+	new->next = NULL;
 	/* ******************************************************************** */
 
 	usualFreeMemory(doc);
