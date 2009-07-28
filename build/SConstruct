@@ -38,7 +38,7 @@ cxx_flags = ['-ggdb', '-O0'];
 env = Environment(CPPPATH = inc_path, ENV = os.environ);
 
 #Compilando a biblioteca de funcoes de apoio.
-functions = env.Library(target = 'functions', source = ['../src/ntbFunctions.c', '../src/functions.c', '../redeNeural/nnet.c', '../redeNeural/nnet2.c', '../redeNeural/geraGraficoDeGrupo.c'],
+functions = env.Library(target = 'functions', source = ['../src/ntbFunctions.c', '../src/functions.c', '../src/nnet.c', '../src/nnet2.c', '../src/geraGraficoDeGrupo.c'],
                     CCFLAGS = cxx_flags, LIBS = used_libs, LIBPATH = lib_path);
 
 #Compilando os CGIs.
