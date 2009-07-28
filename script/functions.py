@@ -8,6 +8,7 @@ import commands
 PROJECT_PATH = os.path.dirname(__file__) + os.path.sep;
 USERS_FILE_NAME = PROJECT_PATH + "xml/users.xml";
 PATIENTS_FILE_NAME = PROJECT_PATH + "xml/pacientesGuadalupe.xml";
+HIST_FILE_NAME = PROJECT_PATH + "xml/pacientesHistorico.xml";
 
 def fmt2GetMethod(s):
   """Formata a string de entrada "s" para que possa ser passada via metodo GET para o CGI."""
@@ -137,3 +138,11 @@ def autoBackup():
   (status, out) = commands.getstatusoutput(
       "%s %s %s"%(AUTOBACKUP_SCRIPT, PATIENTS_FILE_NAME, '../guadalupeXMLRepo')
     )
+
+def getPatientInfoHistorico(dom, pid):
+ """Recebe um node xml (xml.dom.minidom.Document) e o numero geral do paciente (pid).
+   Retorna um objeto xml.minidom.node contendo as informacoes encontradas do paciente
+    solicitado."""
+ for patient in dom.getElementsByTagName("paciente"):
+   if patient.getElementsByTagName("numeroGeral")[0].childNodes[0].data == pid: return patient;
+ return None;

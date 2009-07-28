@@ -143,6 +143,7 @@ int main (void)/*(int argc,char**argv)*/
 	printf ("	tabFields[47] = [\"observacoes\",\" 20 - Observa&ccedil;&otilde;es: \"];\n");
 	printf ("	tabFields[48] = [\"avaliador\",\"Avaliado por: \"];\n");
 	printf ("	tabFields[49] = [\"quemCadastrou\",\"Cadastrado por: \"];\n");
+	printf ("	tabFields[50] = [\"histMotivo\",\" 21 - Motivo da altera&ccedil;&atilde;o: \"];\n");
 	printf ("\n");
 	printf ("	var tabValores= new Array(\"Masculino\", \"Feminino\", \"Presente\", \"Ausente\", \"Ignorado\",\"Sim\", \"N&atilde;o\", \"Branco\", \"N&atilde;o-branco\", \"Negro\", \"Mulato\", \"&Iacute;ndio\", \"Asi&aacute;tico\", \"Outro\", \"Casado\", \"Solteiro\", \"Separado\", \"Vi&uacute;vo\", \"Pulm&atilde;o\", \"Pleura\", \"G&acirc;nglio\");\n");
 	printf ("\n");
@@ -354,7 +355,7 @@ int main (void)/*(int argc,char**argv)*/
 	showMenu("consulta",username);
 
 	printf ("<div align=\"center\">\n");
-	printf ("<form name=\"check\" id=\"form\" method=\"post\" action=\"addForm.py\" onSubmit=\"return validar_consulta_medica(this)\">\n");
+	printf ("<form name=\"check\" id=\"form\" method=\"post\" action=\"historico.py\" onSubmit=\"return validar_consulta_medica(this)\">\n");
 	printf ("\n");
 	printf ("	<span style=\"font-size: 13pt\" class=\"bold\"><br />Projeto - Novos M&eacute;todos Diagn&oacute;sicos em TB pulmonar - Policlinica Augusto Amaral Peixoto - SMS - RJ</span>\n");
 	printf ("	<div align=\"center\">\n");
@@ -751,6 +752,12 @@ int main (void)/*(int argc,char**argv)*/
 	printf ("		<td colspan=\"1\"><script>document.write(tabFields[47][1]);</script></td>\n");
 	printf ("		<td colspan=\"3\" align=\"center\"><div center><textarea name=\"observacoes\" rows=\"5\" cols=\"50\"></textarea></div></td>\n");
 	printf ("	</tr>\n");
+	printf ("»      <!-- Motivo para editar -->\n");
+	printf ("\n");
+	printf ("»      <tr class=\"par\">\n");
+	printf ("»      »       <td colspan=\"1\"><script>document.write(tabFields[50][1]);</script></td>\n");
+	printf ("»      »       <td colspan=\"3\" align=\"center\"><div center><textarea name=\"histMotivo\" rows=\"5\" cols=\"50\"></textarea></div></td>\n");
+	printf ("»      </tr>\n");
 	printf ("\n");
 	printf ("	<tr>\n");
 	printf ("		<td>&nbsp;</td>\n");

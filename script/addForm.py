@@ -15,14 +15,19 @@ xmlEncoding = 'ISO-8859-1';
 form = cgi.FieldStorage()
 
 value = form.getvalue("form")
-if((value == "consultaMedica") or (value == "followUp")):
+if((value == "consultaMedica") or (value == "followUp") or (value == "triagem")):
     xmlEncoding = 'utf-8'
+
+if value == "triagem":
+  pid = "antigoNumeroGeral";
+else:
+  pid = "pid";
 
 #Creating the XML document that will hold the new data.
 doc = xml.dom.minidom.Document();
 data = doc.createElement(form['form'].value);
 for k in form.keys():
-  if k in ['form', 'pid']: continue;
+  if k in ['form', pid]: continue;
   valueList = form.getlist(k)
   for value in valueList:
       val = doc.createElement(k);
@@ -46,7 +51,7 @@ xmlData.seek(0); #Going to the beginning of the file
 dom = xml.dom.minidom.parse(xmlData);
 
 #Retrieving the correct user.
-patient = functions.getPatientInfo(dom, form['pid'].value);
+patient = functions.getPatientInfo(dom, form[pid].value);
 
 #Checking whether the form already exists. If so, we remove it first.
 if len(patient.getElementsByTagName(form['form'].value)) != 0:
