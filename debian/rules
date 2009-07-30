@@ -64,6 +64,20 @@ binary-arch: build install
 	chmod -R g+w,o-rwx $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/xml/
 	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/backup/
 	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/backup/
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/imagesRedeNeural/
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/imagesRedeNeural/
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g1
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g2
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g3
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/grupos
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/ng
+	chown -R root:www-data $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/pacientes.txt
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g1
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g2
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/g3
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/grupos
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/ng
+	chmod -R g+w,o-rwx  $(CURDIR)/debian/guadalupe/usr/lib/projetotb/guadalupe/pacientes.txt
 	chown root:www-data $(CURDIR)/debian/guadalupe/etc/guadalupe/htpasswd
 	chmod 0640 $(CURDIR)/debian/guadalupe/etc/guadalupe/htpasswd
 #	dh_perl
