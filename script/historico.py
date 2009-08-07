@@ -136,7 +136,12 @@ if (existe != 0):
 else:
   patientHist = docHist.createElement(rootChild);
   numeroGeral = docHist.createElement(generalNumber);
-  numeroGeral.appendChild(docHist.createTextNode(unicode(form[pid].value, xmlEncoding)));
+#Caso seja o formulario de triagem, e preciso procurar as informacoes pelo numero geral antigo porem guarda-las no novo (caso o numero geral mude)
+  if (form['form'].value == "triagem"):
+    pacienteID = "numeroGeral";
+  else:
+    pacienteID = pid;
+  numeroGeral.appendChild(docHist.createTextNode(unicode(form[pacienteID].value, xmlEncoding)));
   patientHist.appendChild(numeroGeral);
   pacientes.appendChild(patientHist);
   formulario = 0;

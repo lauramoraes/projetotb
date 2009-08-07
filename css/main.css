@@ -68,6 +68,13 @@ th
 
 .bold	{font-weight: bold}
 
+.link
+{
+	color:blue;
+	text-decoration: underline;
+	cursor: pointer;	
+}
+
 a:link {color: blue; text-decoration: underline}
 a:visited {color: blue; text-decoration: underline}
 a:hover {color: red; text-decoration: none;}
